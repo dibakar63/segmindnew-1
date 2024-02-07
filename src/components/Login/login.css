@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;1,300&display=swap');
+.Login{
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    margin-top: 100px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(34,137,195,1) 0%, rgba(237,45,253,1) 100%);
+}
+.loginw{width: 60%;
+
+   
+text-align: center;
+display: flex;
+align-items: center;
+justify-content: center;
+height: 800px;
+
+
+/* background: rgb(52, 192, 189);
+background: radial-gradient(circle, rgb(242, 128, 22) 0%, rgba(231, 17, 163, 0.613) 100%);} */
+background: rgb(104,104,203);
+background: linear-gradient(90deg, rgba(104,104,203,1) 0%, rgba(255,255,255,1) 66%, rgba(252,69,250,1) 100%);
+
+
+}
+.loginw span{
+    font-size: 40px;
+}
+.loginCard{width: 40%;
+    background: rgb(201,201,234);
+    background: linear-gradient(90deg, rgba(201,201,234,1) 0%, rgba(255,255,255,1) 66%, rgba(255,255,255,0.845903327151173) 100%);
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ height: 800px;
+ border-radius: 0 15px 15px 0;
+}
+
+@media screen and (max-width:1120px) {
+    .loginw{width: 100%;
+        height:"400px";}
+        .loginCard{width: 100%;
+            height: 600px;}
+ .Login{flex-direction: column;}  
+}
+@media screen and (max-width:398px)  {
+    .Login{
+        width: 650px;
+        
+    }
+    .loginw{width: 100%;
+        height:400px;}
+        .loginCard{width: 100%;
+            height: 600px;}
+ .Login{flex-direction: column;
+ }
+}
+@media screen and (max-width:468px){
+    .Login{
+        width: 626px;
+        
+    }
+    .loginw{width: 626px;
+        height:400px;}
+        .loginCard{width: 626px;
+            height: 600px;}
+ .Login{flex-direction: column;}  
+}
