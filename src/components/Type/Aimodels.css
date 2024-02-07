@@ -1,0 +1,85 @@
+.ComponentWrapper {
+  padding: 6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.left {
+  width: 30%;
+}
+.right {
+  width: 60%;
+}
+.promtdiv {
+  padding: 1rem;
+  border: 1px solid grey;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+}
+.innerdiv {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+button {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+.right img {
+  height: 600px;
+  width: 800px;
+}
+.prompttextarea {
+  font-size: 0.9rem;
+  font-weight: 400;
+  overflow-y: auto;
+  padding: 0.8rem;
+  border: 0.5px solid gray;
+  border-radius: 20px;
+}
+.promptinput {
+  font-size: 0.9rem;
+  font-weight: 400;
+
+  padding: 0.8rem;
+  border: 0.5px solid gray;
+  border-radius: 20px;
+}
+.Advanced {
+  display: flex;
+  align-items: center;
+}
+.arrow {
+  cursor: pointer;
+}
+h3 {
+  margin:0
+}
+.checkboxdiv{
+  display: flex;
+  gap: 1rem;
+  padding: 0.3rem;
+
+}
+.genratebtn{
+  padding: 0.8rem 2rem;
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+}
+.imgtoimgdiv{
+  width: 100%;
+  
+}
+.imgtoimgdiv img{
+  width: 100%;
+  height: 100%;
+}

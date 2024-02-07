@@ -1,25 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Navbar from './components/Navbar/Navbar'
+import Home from './components/Home/Home'
+import Footer from './components/Footer/Footer'
+import {Routes,Route} from 'react-router-dom'
+import TryModels from './components/TryModels/TryModel'
 
-function App() {
+import ApiKey from "./components/Console/ApiKey";
+import Console from "./components/Console/Console";
+import Usage from "./components/Console/Usage";
+import Billing from "./components/Console/Billing";
+import TrainingModel from "./components/Console/TrainingModel";
+import TrainingHub from "./components/Console/TrainingHub";
+import ModelHub from "./components/Console/ModelHub";
+import Referalss from "./components/Console/Referalss";
+
+import Type from "./components/Type/Type";
+import TexttoImage from "./components/Type/TexttoImage";
+import ImageToImage from "./components/Type/ImageToImage";
+import FilterPage from "./components/FiltersPages/FilterPage";
+import Signup from "./components/Login/Signup";
+import Login from "./components/Login/Login";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+//import Navbartwo from "./components/Navbartwo/Navbartwo";
+
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopene noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar/>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/models' element={<TryModels/>}/>
+        <Route path="/models" element={<TryModels />} />
+        <Route path="/models/type" element={<Type />} />
+        <Route path="/models/texttoImage/:name" element={<TexttoImage/>} />
+        <Route path="/models/imageToImage/:name" element={<ImageToImage />} />
+        <Route path="/:desiredType" element={<FilterPage />} />
+         
+     
+      <Route path="/models" element={<TryModels />} />
+       
+   
+      <Route path='/console/key' element={<ApiKey/>}/>
+      <Route path='/console/usage' element={<Usage/>}/>
+      <Route path='/console/billing' element={<Billing/>}/>
+      <Route path='/console/trainingModel' element={<TrainingModel/>}/>
+      <Route path='/console/hub' element={<TrainingHub/>}/>
+      <Route path='/console/modelhub' element={<ModelHub/>}/>
+      <Route path='/console/referals' element={<Referalss/>}/>
+      <Route path='/signup' element={<Signup/>}/>
+      <Route path='/login' element={<Login/>}/>
+      </Routes>
+     
+      <Footer/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
