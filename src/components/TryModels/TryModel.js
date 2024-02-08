@@ -67,7 +67,7 @@ const TryModels = () => {
   };
 
   return (
-    <div className="container-fluid mt-30">
+    <div className="container-fluid trymodel mt-30">
       <div className="titleContent">
         <input type="text" placeholder="Search Your AI generated Image Here" className="input_btn"/>
         <button className="search_btn2">Search</button>

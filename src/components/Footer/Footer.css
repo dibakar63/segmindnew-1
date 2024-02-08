@@ -9,6 +9,8 @@
     text-align: left;
     justify-content: center;
     align-items: center;
+    bottom: 0;
+   
    
 }
 .footer li{
@@ -47,6 +49,9 @@
     .container-fluid{
          width: 650px;
          height: auto;
+    }
+    .footer{
+        position: fixed;
     }
 }
 

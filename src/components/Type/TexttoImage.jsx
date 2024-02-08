@@ -272,8 +272,8 @@ const TexttoImage = () => {
         </div>
       </div>
       <div className="downDiv">
-        <div className="DownDivleft">x</div>
-        <div className="DownDivRight">y</div>
+        {/* <div className="DownDivleft">x</div>
+        <div className="DownDivRight">y</div> */}
       </div>
     </div>
   );
