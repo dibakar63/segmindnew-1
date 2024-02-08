@@ -13,7 +13,7 @@ const TryModels = () => {
 
   const getdata = async () => {
     try {
-      const res = await axios.get(`http://localhost:8000/wrapper/findAllModel`);
+      const res = await axios.get(`http://localhost:8004/wrapper/findAllModel`);
 
       setData(res.data);
       setModels(res.data);
@@ -27,7 +27,7 @@ const TryModels = () => {
 
   function getDetails(modelSlug) {
     return axios
-      .get(`http://localhost:8000/wrapper/findOneModel?name=${modelSlug}`)
+      .get(`http://localhost:800/wrapper/findOneModel?name=${modelSlug}`)
       .then((response) => response.data)
       .catch((error) => {
         console.error(
