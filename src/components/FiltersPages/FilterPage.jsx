@@ -15,7 +15,7 @@ const FilterPage = () => {
   console.log(filterdata);
   function getDetails(modelSlug) {
     return axios
-      .get(`http://localhost:8000/wrapper/findOneModel?name=${modelSlug}`)
+      .get(`http://localhost:8004/wrapper/findOneModel?name=${modelSlug}`)
       .then((response) => response.data)
       .catch((error) => {
         console.error(
@@ -130,7 +130,7 @@ const FilterPage = () => {
           <>
             {" "}
             <div style={{ marginTop: "20px" }}>
-              <div className="imgdiv">
+              <div className="imgdiv2">
                 {filterdata.map((element) => {
                   return (
                     <div style={{ marginTop: "15px" }}>
