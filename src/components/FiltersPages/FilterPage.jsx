@@ -130,7 +130,7 @@ const FilterPage = () => {
           <>
             {" "}
             <div style={{ marginTop: "20px" }}>
-              <div className="imgdiv">
+              <div className="imgdiv2">
                 {filterdata.map((element) => {
                   return (
                     <div style={{ marginTop: "15px" }}>

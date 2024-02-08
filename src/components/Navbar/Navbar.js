@@ -2,10 +2,16 @@ import React from 'react'
 import './Navbar.css'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import { useAuth } from '../Context/auth'
 const Navbar = () => {
   const [auth,setAuth]=useAuth()
   console.log(auth);
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!isDropdownVisible);
+  };
 
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -37,17 +43,22 @@ const Navbar = () => {
         <li className="nav-item">
           <a className="nav-link" href="#">Blog</a>
         </li>
+        {!auth ? <li className="nav-item">
+          <a className="nav-link" href="/login">Login</a>
+        </li> : 
         <li className="nav-item dropdown">
           <button className="nav-link dropdown-toggle btn btn-outline-primary login" href="#" id="navbarDropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Login
+                Login
           </button>
           <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a className="dropdown-item" href="/console/key">Console</a></li>
-            <li><a className="dropdown-item" href="#">Signout</a></li>
+            <li><a className="dropdown-item" onClick={handleLogout}>Signout</a></li>
             
           </ul>
-        </li>
-        
+        </li> 
+        }
+         
+         
       </ul>
       
     </div>
