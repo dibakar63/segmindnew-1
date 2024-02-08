@@ -54,6 +54,7 @@ const App = () => {
       </Routes>
      
       <Footer/>
+      <ToastContainer/>
     </div>
   )
 }

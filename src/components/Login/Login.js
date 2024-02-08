@@ -1,39 +1,127 @@
-import React from 'react'
-import './login.css'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from "react";
+import "./login.css";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useAuth } from "../Context/auth";
+
 const Login = () => {
-    const navigate=useNavigate()
+  const navigate = useNavigate();
+  const [auth, setAuth] = useAuth();
+  const [username, setusername] = useState("");
+
+  const [password, setpassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    try {
+      const res = await axios.post(`http://localhost:8000/auth/signin`, {
+        username,
+        password,
+      });
+      if (res && res.status===200) {
+        toast.success("login successful");
+        console.log(res)
+        setAuth({
+          ...auth,
+          name: res.data.name,
+          token: res.data.token,
+        });
+        localStorage.setItem("auth", JSON.stringify(res));
+        navigate("/");
+      } else {
+        toast.error("login failed");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  };
+
   return (
-    <div className='Login'>
-    <div className='loginw'>
-    <span>Hi! Welcome To Legacies AI</span>
+    <div className="Login">
+      <div className="loginw">
+        <span>Hi! Welcome To Legacies AI</span>
+      </div>
+      <div className="loginCard">
+        <h1>Login</h1>
+        <div style={{ display: "flex", gap: "10px" }}>
+          <label>New User?</label>{" "}
+          <button
+            style={{
+              background: "transparent",
+              border: "none",
+              color: "blue",
+              fontSize: "16px",
+              cursor: "pointer",
+            }}
+            onClick={() => navigate("/signup")}
+          >
+            Create an account
+          </button>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "4px",
+            marginTop: "53px",
+          }}
+        >
+          <span>
+            <strong>Email</strong>
+          </span>
+
+          <input
+            type="text"
+            placeholder="Enter your name"
+            className="signupinput"
+            value={username}
+            onChange={(e)=>setusername(e.target.value)}
+          />
+
+          <span>
+            <strong>Password</strong>
+          </span>
+
+          <input
+            type="password"
+            placeholder="Enter Password"
+            className="signupinput"
+            value={password}
+            onChange={(e)=>setpassword(e.target.value)}
+          />
+        </div>
+        <br />
+        <button
+          style={{
+            background: "transparent",
+            border: "none",
+            color: "blue",
+            fontSize: "16px",
+            cursor: "pointer",
+          }}
+        >
+          Forget Your password?
+        </button>
+        <br />
+        <button
+          style={{
+            width: "470px",
+            height: "49px",
+            borderRadius: "15px",
+            background: "blue",
+            border: "none",
+            fontSize: "15px",
+            cursor: "pointer",
+          }}
+          onClick={()=>handleSubmit()}
+        >
+          Login
+        </button>
+      </div>
     </div>
-    <div className='loginCard'>
-      <h1>Login</h1>
-      <div style={{display:"flex",gap:"10px"}}>
-      <label>New User?</label> <button style={{background:"transparent",border:"none",color:"blue",fontSize:"16px",cursor:"pointer"}} onClick={()=>navigate('/signup')}>Create an account</button>
-      </div>
-      
-      <div style={{display:"flex",flexDirection:"column",gap:"4px",marginTop:"53px"}}>
-      
-      <span ><strong>Email</strong></span>
-      
-      <input type='text' placeholder='Enter your name' style={{width:"470px",height:"49px",borderRadius:"15px",border:"1px solid rgb(1,0,0,0.4)",paddingLeft:"19px"}}/>
-      
-      <span><strong>Password</strong></span>
+  );
+};
 
-      <input type='text' placeholder='Enter Password' style={{width:"470px",height:"49px",borderRadius:"15px",border:"1px solid rgb(1,0,0,0.4)",paddingLeft:"19px"}}/>
-      </div>
-      <br/>
-      <button style={{background:"transparent",border:"none",color:"blue",fontSize:"16px",cursor:"pointer"}}>Forget Your password?</button>
-      <br/>
-      <button style={{width:"470px",height:"49px",borderRadius:"15px",background:"blue",border:"none",fontSize:'15px',cursor:"pointer"}}>Login</button>
-      
-      </div>
-      
-
-    </div>
-  )
-}
-
-export default Login
+export default Login;

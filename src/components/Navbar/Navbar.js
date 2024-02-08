@@ -1,6 +1,23 @@
 import React from 'react'
 import './Navbar.css'
+import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../Context/auth'
 const Navbar = () => {
+  const [auth,setAuth]=useAuth()
+  console.log(auth);
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    setAuth({
+      ...auth,
+      user: null,
+      token: "",
+    });
+    localStorage.removeItem("auth");
+    setAuth(null);
+    toast.success("Logout Success");
+  };
   return (
     <div className=' navbar_main'>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
