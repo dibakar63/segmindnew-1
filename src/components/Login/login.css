@@ -61,10 +61,12 @@ background: linear-gradient(90deg, rgba(104,104,203,1) 0%, rgba(255,255,255,1) 6
 }
 @media screen and (max-width:468px){
     .Login{
-        width: 626px;
+        width: 647px;
+        margin-left: 0;
         
     }
-    .loginw{width: 626px;
+    .loginw{width: 647px;
+        margin-left: 0;
         height:400px;}
         .loginCard{width: 626px;
             height: 600px;}

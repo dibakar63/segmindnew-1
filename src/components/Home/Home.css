@@ -67,7 +67,7 @@ background: linear-gradient(90deg, rgba(222,51,226,1) 12%, rgba(62,65,220,1) 65%
 }
 .img3{
     position: absolute;
-    top: 150%;
+    top: 170%;
     left: 60%;
     z-index: -1;
 }
@@ -81,7 +81,7 @@ background: linear-gradient(90deg, rgba(222,51,226,1) 12%, rgba(62,65,220,1) 65%
 .propmt{
     width: 300px;
     position: absolute;
-    top: 180%;
+    top: 200%;
     left: 34%;
     border-radius: 16px;
     box-shadow: -14px -22px 90px 1px rgba(43, 70, 177, 0.63);
