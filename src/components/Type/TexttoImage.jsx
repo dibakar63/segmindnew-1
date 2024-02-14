@@ -112,9 +112,10 @@ const TexttoImage = () => {
   return (
     <div>
       <div className="ComponentWrapper">
+     
         <div className="left">
           <div className="promtdiv">
-            <h3>Prompt</h3>
+          <h3>Prompt</h3>
             <textarea
               name="prompt"
               className="prompttextarea"
@@ -124,6 +125,7 @@ const TexttoImage = () => {
               onChange={handleInputChange}
               // onChange={handleChange}
             ></textarea>
+            
             <h3 className="Advanced">
               Advanced
               {!advanced ? (
