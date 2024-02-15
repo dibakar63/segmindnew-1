@@ -65,6 +65,22 @@ const FilterPage = () => {
       setFilterdata(controlnetsModels?.slice(-6));
     }
   }, [location.state.desiredType]);
+
+
+ const gettexttoImage=async()=>{
+  const res=await axios.get(`http://localhost:8004/wrapper/findAllModel/textToImagedisplay`)
+ console.log(res.data)
+ }
+
+ useEffect(()=>{
+  gettexttoImage();
+ },[])
+
+
+
+
+
+
   const handleOnClick = (element) => {
     navigate(`/models/type`, { state: { elemert: element } });
   };
@@ -128,7 +144,7 @@ const FilterPage = () => {
           </div>
         ) : (
           <>
-            {" "}
+            
             <div style={{ marginTop: "20px" }}>
               <div className="imgdiv2">
                 {filterdata.map((element) => {
