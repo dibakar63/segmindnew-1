@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import LoadingSmall from "./LoadingSmall";
-import "../TryModels/TryModel.css"
+import "../TryModels/TryModel.css";
 
 const FilterPage = () => {
   const location = useLocation();
@@ -13,73 +13,107 @@ const FilterPage = () => {
   const [activeButton, setActiveButton] = useState(location.state.name);
   const [loading, setLoading] = useState(true);
   console.log(filterdata);
-  function getDetails(modelSlug) {
-    return axios
-      .get(`http://localhost:8004/wrapper/findOneModel?name=${modelSlug}`)
-      .then((response) => response.data)
-      .catch((error) => {
-        console.error(
-          `Error fetching details for model ${modelSlug}: ${error}`
-        );
-        throw error;
-      });
-  }
-  const fetchData = async () => {
-    const filteredModels = [];
+  // function getDetails(modelSlug) {
+  //   return axios
+  //     .get(`http://localhost:8004/wrapper/findOneModel?name=${modelSlug}`)
+  //     .then((response) => response.data)
+  //     .catch((error) => {
+  //       console.error(
+  //         `Error fetching details for model ${modelSlug}: ${error}`
+  //       );
+  //       throw error;
+  //     });
+  // }
+  // const fetchData = async () => {
+  //   const filteredModels = [];
 
-    for (const model of models) {
-      try {
-        setLoading(true);
-        const details = await getDetails(model.slug);
+  //   for (const model of models) {
+  //     try {
+  //       setLoading(true);
+  //       const details = await getDetails(model.slug);
 
-        model.details = details.model;
+  //       model.details = details.model;
 
-        if (
-          model.details &&
-          model.details.type === location.state.desiredType
-        ) {
-          filteredModels.push(model);
-        }
-        setLoading(false);
-      } catch (error) {
-        console.error(
-          `Error fetching details for model ${model.slug}: ${error}`
-        );
-        setLoading(false);
-      }
-    }
+  //       if (
+  //         model.details &&
+  //         model.details.type === location.state.desiredType
+  //       ) {
+  //         filteredModels.push(model);
+  //       }
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.error(
+  //         `Error fetching details for model ${model.slug}: ${error}`
+  //       );
+  //       setLoading(false);
+  //     }
+  //   }
 
-    setFilterdata(filteredModels);
-  };
+  //   setFilterdata(filteredModels);
+  // };
 
   useEffect(() => {
-    if (
-      location.state.desiredType == "textToImage" ||
-      location.state.desiredType == "imageToImage"
-    ) {
-      fetchData();
+    if (location.state.desiredType == "textToImage") {
+      gettexttoImage();
+    } else if (location.state.desiredType == "imageToImage") {
+      getImagetoImage();
     } else if (location.state.desiredType == "UtilityFunctions") {
-      setFilterdata(location.state.models?.slice(-5));
+      // const controlnetsModels = location.state.models?.slice(0, -5);
+      // setFilterdata(controlnetsModels?.slice(-6));
+      getutilityfunctions();
     } else if (location.state.desiredType == "Controlnets") {
-      const controlnetsModels = location.state.models?.slice(0, -5);
-      setFilterdata(controlnetsModels?.slice(-6));
+      getControlnets();
     }
   }, [location.state.desiredType]);
 
-
- const gettexttoImage=async()=>{
-  const res=await axios.get(`http://localhost:8004/wrapper/findAllModel/textToImagedisplay`)
- console.log(res.data)
- }
-
- useEffect(()=>{
-  gettexttoImage();
- },[])
-
-
-
-
-
+  const gettexttoImage = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:8004/wrapper/textToImagedisplay"
+      );
+      setFilterdata(res.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const getImagetoImage = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:8004/wrapper/imageToImagedisplay"
+      );
+      setFilterdata(res.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const getutilityfunctions = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:8004/wrapper/utilityFunctiondisplay"
+      );
+      setFilterdata(res.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const getControlnets = async () => {
+    try {
+      const res = await axios.get(
+        "http://localhost:8004/wrapper/controlnetsdisplay"
+      );
+      setFilterdata(res.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleOnClick = (element) => {
     navigate(`/models/type`, { state: { elemert: element } });
@@ -144,7 +178,6 @@ const FilterPage = () => {
           </div>
         ) : (
           <>
-            
             <div style={{ marginTop: "20px" }}>
               <div className="imgdiv2">
                 {filterdata.map((element) => {

@@ -41,6 +41,8 @@ console.log(location)
   //   fetchData();
   // }, [details, navigate]);
   let data = ["sam-img2img","codeformer","bg-removal","esrgan"]
+  let data2 = [ "sd1.5-controlnet-canny","sd1.5-controlnet-softedge","sd1.5-controlnet-depth","sd1.5-controlnet-openpose"]
+
   useEffect(() => {
     const fetchData = async () => {
       await getdata();
@@ -50,10 +52,13 @@ console.log(location)
   
         if (type === "textToImage") {
           navigate(`/models/textToImage/${slug}`, { state: { details } });
-        } else if (type === "imageToImage" && !data.includes(slug)) {
+        } else if (type === "imageToImage" && !data.includes(slug) && !data2.includes(slug)) {
           navigate(`/models/imageToImage/${slug}`, { state: { details } });
         } else if (data.includes(slug)) {
           navigate(`/models/utilityfunctions/${slug}`, { state: { details } });
+        }
+         else if (data2.includes(slug)) {
+          navigate(`/models/controlnets/${slug}`, { state: { details } });
         }
       }
     };

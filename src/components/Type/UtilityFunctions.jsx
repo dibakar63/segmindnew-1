@@ -7,8 +7,10 @@ import "./Aimodels.css";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { message, Upload, Button } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
+import { useAuth } from "../Context/auth";
 
 const UtilityFunctions = () => {
+  const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,79 +28,47 @@ const UtilityFunctions = () => {
   const location = useLocation();
   const model = location?.state?.details?.model;
   console.log(model);
-  const [advanced, setAdvancedtrue] = useState(false);
+  const [advanced, setAdvancedtrue] = useState(true);
+  useEffect(() => {
+    if (model?.slug === "sam-img2img" || model?.slug === "bg-removal") {
+      setAdvancedtrue(false);
+    }
+    
+  }, []);
+  console.log("advance", advanced);
   const [originalimg, setoriginalimg] = useState(
     model?.default_image_output || ""
   );
-  const [prompt, setPrompt] = useState(
-    model?.parameters?.prompt?.displayValue || ""
+
+  const [bg, setbg] = useState(model?.parameters?.bg?.default || false);
+  const [face, setface] = useState(model?.parameters?.face?.default || false);
+  const [scale, setscale] = useState(
+    model?.parameters?.scale?.displayValue || ""
   );
-  const [seed, setSeed] = useState(
-    parseFloat(model?.parameters?.seed?.displayValue) || 0
-  );
-  const [negative_prompt, setnegative_prompt] = useState(
-    model?.parameters?.negative_prompt?.displayValue || ""
-  );
-  const [scheduler, setScheduler] = useState(
-    model?.parameters?.scheduler?.displayValue || ""
-  );
-  const [num_inference_steps, setnum_inference_steps] = useState(
-    model?.parameters?.num_inference_steps?.displayValue || -1
-  );
-  const [guidance_scale, setguidance_scale] = useState(
-    parseFloat(model?.parameters?.guidance_scale?.displayValue) || -1
-  );
-  const [control_end, setcontrol_end] = useState(
-    parseFloat(model?.parameters?.control_end?.displayValue) || -1
-  );
-  const [control_scale, setcontrol_scale] = useState(
-    parseFloat(model?.parameters?.control_scale?.displayValue) || -1
-  );
-  const [controlnet_scale, setcontrolnet_scale] = useState(
-    parseFloat(model?.parameters?.controlnet_scale?.displayValue) || -1
+  const [fidelity, setfidelity] = useState(
+    model?.parameters?.fidelity?.displayValue || false
   );
 
-  const [control_start, setcontrol_start] = useState(
-    parseFloat(model?.parameters?.control_start?.displayValue) || -1
-  );
-  const [strength, setstrength] = useState(
-    parseFloat(model?.parameters?.strength?.displayValue) || -1
-  );
+  const handleBgChange = () => {
+    setbg(!bg);
+  };
+
+  const handleFaceChange = () => {
+    setface(!face);
+  };
+
   const [image, setimage] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
-      case "prompt":
-        setPrompt(value);
+      case "scale":
+        setscale(value);
         break;
-      case "seed":
-        setSeed(value);
+      case "fidelity":
+        setfidelity(value);
         break;
-      case "negative_prompt":
-        setnegative_prompt(value);
-        break;
-      case "scheduler":
-        setScheduler(value);
-        break;
-      case "num_inference_steps":
-        setnum_inference_steps(value);
-        break;
-      case "guidance_scale":
-        setguidance_scale(value);
-        break;
-      case "control_scale":
-        setcontrol_scale(value);
-        break;
-      case "control_start":
-        setcontrol_start(value);
-        break;
-      case "control_end":
-        setcontrol_end(value);
-        break;
-      case "strength":
-        setstrength(value);
-        break;
+
       default:
         break;
     }
@@ -155,102 +125,86 @@ const UtilityFunctions = () => {
     </button>
   );
 
-  let modifiedData = {
-    prompt,
-    negative_prompt,
-    scheduler,
-    num_inference_steps,
-    seed,
+  let modifiedData;
 
-    base64: false,
-    samples: 1,
-    base64File,
-  };
+  if (!advanced) {
+    modifiedData = {
+      image: base64File,
+    }
+  }else{
+    modifiedData = {
+      image: base64File,
+      bg:bg,
+      face:face,
+      fidelity:fidelity,
+      scale:scale
+    }
+  }
+  
 
-  if (model?.parameters?.control_scale) {
-    modifiedData = {
-      ...modifiedData,
-      control_scale,
-    };
-  }
+  // let modifiedData = {
+  //   prompt,
+  //   negative_prompt,
+  //   scheduler,
+  //   num_inference_steps,
+  //   seed,
 
-  if (model?.parameters?.control_end) {
-    modifiedData = {
-      ...modifiedData,
-      control_end,
-    };
-  }
-
-  if (model?.parameters?.control_start) {
-    modifiedData = {
-      ...modifiedData,
-      control_start,
-    };
-  }
-
-  if (model?.parameters?.guidance_scale) {
-    modifiedData = {
-      ...modifiedData,
-      guidance_scale,
-    };
-  }
-  if (model?.parameters?.controlnet_scale) {
-    modifiedData = {
-      ...modifiedData,
-      controlnet_scale,
-    };
-  }
-  if (model?.parameters?.strength) {
-    modifiedData = {
-      ...modifiedData,
-      strength,
-    };
-  }
+  //   base64: false,
+  //   samples: 1,
+  //   base64File,
+  // };
 
   const fetchData = async () => {
-    let url;
-    const api_key = "SG_cdb02db099cb8b32";
+    if (!auth?.name) {
+      navigate("/login");
+    } else {
+      let url;
+      const api_key = "SG_cdb02db099cb8b32";
 
-    url = `http://localhost:8004/wrapper/utilityFunction?name=${model?.slug}`;
+      url = `http://localhost:8004/wrapper/utilityFunction?name=${model?.slug}`;
 
-    try {
-      const response = await axios.post(url, modifiedData, {
-        headers: {
-          "x-api-key": api_key,
-          "Content-Type": "application/json",
-        },
-        responseType: "arraybuffer",
-      });
+      try {
+        setLoading(true);
+        const response = await axios.post(url, modifiedData, {
+          headers: {
+            "x-api-key": api_key,
+            "Content-Type": "application/json",
+          },
+          responseType: "arraybuffer",
+        });
 
-      const imageBlob = new Blob([response.data]);
-      const imageDataUrl = URL.createObjectURL(imageBlob);
+        const imageBlob = new Blob([response.data]);
+        const imageDataUrl = URL.createObjectURL(imageBlob);
 
-      setoriginalimg(imageDataUrl);
-    } catch (error) {
-      console.error("Error fetching image:", error);
+        setoriginalimg(imageDataUrl);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching image:", error);
+        setLoading(false);
+      }
     }
   };
 
   return (
     <div>
-      
       <div className="ComponentWrapper">
         <div className="left">
-          <div className="promtdiv">
-            <div className="imgtoimgdiv">
-              <Upload
-                beforeUpload={beforeUpload}
-                onChange={handleChange}
-                showUploadList={false}
-                customRequest={({ onSuccess, onError, file }) => {
-                  setTimeout(() => {
-                    onSuccess();
-                  }, 0);
-                }}
-              >
-                <Button icon={<UploadOutlined />}>Upload Image</Button>
-              </Upload>
-              {base64File && (
+          <div className="upperdiv">
+            <div className="promtdiv2">
+              <div className="imgtoimgdiv">
+                <Upload
+                  beforeUpload={beforeUpload}
+                  onChange={handleChange}
+                  showUploadList={false}
+                  customRequest={({ onSuccess, onError, file }) => {
+                    setTimeout(() => {
+                      onSuccess();
+                    }, 0);
+                  }}
+                >
+                  <Button icon={<UploadOutlined />}>Upload Image</Button>
+                </Upload>
+                {/* {base64File && (
                 <div>
                   <p>Base64 Encoded Image:</p>
                   <img
@@ -259,36 +213,69 @@ const UtilityFunctions = () => {
                     style={{ maxWidth: "100%" }}
                   />
                 </div>
+              )} */}
+              </div>
+              {/* <h3>Prompt</h3>
+              <textarea
+                name="prompt"
+                className="prompttextarea"
+                rows={5}
+                placeholder="Enter prompt here"
+                value={prompt}
+                onChange={handleInputChange}
+                // onChange={handleChange}
+              ></textarea> */}
+            </div>
+            <div className="limg">
+              {base64File && (
+                <div>
+                  {/* <p>Base64 Encoded Image:</p> */}
+                  <img
+                    src={`data:image/png;base64,${base64File}`}
+                    alt="Uploaded"
+                    style={{
+                      width: "180px",
+                      height: "210px",
+                      borderRadius: "16px",
+                      marginTop: "33px",
+                      marginBottom: "10px",
+                    }}
+                  />
+                </div>
+              )}
+              {loading ? (
+                <button onClick={() => fetchData()} className="genratebtn">
+                  Loading...
+                </button>
+              ) : (
+                <button onClick={() => fetchData()} className="genratebtn">
+                  Generate
+                </button>
               )}
             </div>
-            <h3>Prompt</h3>
-            <textarea
-              name="prompt"
-              className="prompttextarea"
-              rows={5}
-              placeholder="Enter prompt here"
-              value={prompt}
-              onChange={handleInputChange}
-              // onChange={handleChange}
-            ></textarea>
-            <h3 className="Advanced">
-              Advanced
-              {!advanced ? (
-                <MdKeyboardArrowDown
-                  onClick={() => setAdvancedtrue(true)}
-                  className="arrow"
-                />
-              ) : (
-                <MdKeyboardArrowUp
-                  onClick={() => setAdvancedtrue(false)}
-                  className="arrow"
-                />
-              )}
-            </h3>
+          </div>
+          <img src={originalimg} style={{ height: "520px" }} />
+        </div>
+        <div className="right">
+          {advanced && (
+            <div className="promtdiv">
+              <h3 className="Advanced">
+                Advanced
+                {/* {!advanced ? (
+               <MdKeyboardArrowDown
+                 onClick={() => setAdvancedtrue(true)}
+                 className="arrow"
+               />
+             ) : (
+               <MdKeyboardArrowUp
+                 onClick={() => setAdvancedtrue(false)}
+                 className="arrow"
+               />
+             )} */}
+              </h3>
 
-            {advanced && (
               <>
-                <div className="innerdiv">
+                {/* <div className="innerdiv">
                   <h3>Seed</h3>
                   <input
                     onChange={handleInputChange}
@@ -329,8 +316,8 @@ const UtilityFunctions = () => {
                     <option value="DDM2 Karas">DDM2 Karas</option>
                     <option value="LMS">LMS</option>
                   </select>
-                </div>
-                <div className="innerdiv">
+                </div> */}
+                {/* <div className="innerdiv">
                   <h3>Steps</h3>
                   <Row>
                     <Col span={12}>
@@ -400,48 +387,84 @@ const UtilityFunctions = () => {
                       />
                     </Col>
                   </Row>
-                </div>
-                {control_scale > -1 && (
-                  <>
-                    <div className="innerdiv">
-                      <h3>Controlnet Conditioning Scale</h3>
-                      <Row>
-                        <Col span={12}>
-                          <Slider
-                            min={0}
-                            max={5}
-                            onChange={(value) =>
-                              handleInputChange({
-                                target: { name: "control_scale", value },
-                              })
-                            }
-                            value={
-                              typeof control_scale === "number"
-                                ? control_scale
-                                : 0
-                            }
-                          />
-                        </Col>
-                        <Col span={4}>
-                          <InputNumber
-                            min={0}
-                            max={5}
-                            style={{ margin: "0 16px" }}
-                            name="control_scale"
-                            value={
-                              typeof control_scale === "number"
-                                ? control_scale
-                                : 0
-                            }
-                            onChange={handleInputChange}
-                          />
-                        </Col>
-                      </Row>
-                    </div>
-                  </>
-                )}
+                </div> */}
 
-                {control_start > -1 && (
+                <div className="innerdiv">
+                  <h3>Scale</h3>
+                  <Row>
+                    <Col span={12}>
+                      <Slider
+                        min={1}
+                        max={4}
+                        step={0.1}
+                        onChange={(value) =>
+                          handleInputChange({
+                            target: { name: "scale", value },
+                          })
+                        }
+                        value={typeof scale === "number" ? scale : 0}
+                      />
+                    </Col>
+                    <Col span={4}>
+                      <InputNumber
+                        min={1}
+                        max={4}
+                        style={{ margin: "0 16px" }}
+                        name="scale"
+                        value={typeof scale === "number" ? scale : 0}
+                        onChange={handleInputChange}
+                      />
+                    </Col>
+                  </Row>
+                </div>
+                <div className="innerdiv">
+                  <h3>Fidelity</h3>
+                  <Row>
+                    <Col span={12}>
+                      <Slider
+                        min={0}
+                        max={1}
+                        step={0.01}
+                        onChange={(value) =>
+                          handleInputChange({
+                            target: { name: "fidelity", value },
+                          })
+                        }
+                        value={typeof fidelity === "number" ? fidelity : 0}
+                      />
+                    </Col>
+                    <Col span={4}>
+                      <InputNumber
+                        min={0}
+                        max={1}
+                        style={{ margin: "0 16px" }}
+                        name="fidelity"
+                        value={typeof fidelity === "number" ? fidelity : 0}
+                        onChange={handleInputChange}
+                      />
+                    </Col>
+                  </Row>
+                </div>
+                <div className="innerdiv">
+                  <div className="checkboxdiv">
+                    <input
+                      type="checkbox"
+                      value={bg}
+                      onChange={handleBgChange}
+                    />
+                    <span>bg</span>
+                  </div>
+                  <div className="checkboxdiv">
+                    <input
+                      type="checkbox"
+                      value={face}
+                      onChange={handleFaceChange}
+                    />
+                    <span>Face</span>
+                  </div>
+                </div>
+
+                {/* {control_start > -1 && (
                   <>
                     <div className="innerdiv">
                       <h3>Control Guidance Start</h3>
@@ -480,8 +503,8 @@ const UtilityFunctions = () => {
                       </Row>
                     </div>
                   </>
-                )}
-                {control_end > -1 && (
+                )} */}
+                {/* {control_end > -1 && (
                   <>
                     <div className="innerdiv">
                       <h3>Control Guidance end</h3>
@@ -516,8 +539,8 @@ const UtilityFunctions = () => {
                       </Row>
                     </div>
                   </>
-                )}
-                {controlnet_scale > -1 && (
+                )} */}
+                {/* {controlnet_scale > -1 && (
                   <>
                     <div className="innerdiv">
                       <h3>Control Guidance end</h3>
@@ -556,8 +579,8 @@ const UtilityFunctions = () => {
                       </Row>
                     </div>
                   </>
-                )}
-                {strength > -1 && (
+                )} */}
+                {/* {strength > -1 && (
                   <>
                     <div className="innerdiv">
                       <h3>Strength</h3>
@@ -588,16 +611,10 @@ const UtilityFunctions = () => {
                       </Row>
                     </div>
                   </>
-                )}
+                )} */}
               </>
-            )}
-            <button className="genratebtn" onClick={() => fetchData()}>
-              Generate
-            </button>
-          </div>
-        </div>
-        <div className="right">
-          <img src={originalimg} />
+            </div>
+          )}
         </div>
       </div>
       <div></div>

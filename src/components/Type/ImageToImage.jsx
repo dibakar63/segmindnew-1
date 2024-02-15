@@ -7,8 +7,10 @@ import "./Aimodels.css";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { message, Upload, Button } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
+import { useAuth } from "../Context/auth";
 
 const ImageToImage = () => {
+  const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -208,50 +210,56 @@ const ImageToImage = () => {
   }
 
   const fetchData = async () => {
-    let url;
-    const api_key = "SG_cdb02db099cb8b32";
+    if (!auth?.name) {
+      navigate("/login");
+    } else {
+      let url;
+      const api_key = "SG_cdb02db099cb8b32";
 
-    url = `http://localhost:8004/wrapper/imageToImage?name=${model?.slug}`;
+      url = `http://localhost:8004/wrapper/imageToImage?name=${model?.slug}`;
 
-    try {
-      const response = await axios.post(url, modifiedData, {
-        headers: {
-          "x-api-key": api_key,
-          "Content-Type": "application/json",
-        },
-        responseType: "arraybuffer",
-      });
+      try {
+        setLoading(true);
+        const response = await axios.post(url, modifiedData, {
+          headers: {
+            "x-api-key": api_key,
+            "Content-Type": "application/json",
+          },
+          responseType: "arraybuffer",
+        });
 
-      const imageBlob = new Blob([response.data]);
-      const imageDataUrl = URL.createObjectURL(imageBlob);
+        const imageBlob = new Blob([response.data]);
+        const imageDataUrl = URL.createObjectURL(imageBlob);
 
-      setoriginalimg(imageDataUrl);
-    } catch (error) {
-      console.error("Error fetching image:", error);
+        setoriginalimg(imageDataUrl);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching image:", error);
+        setLoading(false);
+      }
     }
   };
 
   return (
     <div>
-      
       <div className="ComponentWrapper">
         <div className="left">
-        <div className="upperdiv">
-          <div className="promtdiv2">
-            <div className="imgtoimgdiv">
-              <Upload
-                beforeUpload={beforeUpload}
-                onChange={handleChange}
-                showUploadList={false}
-                customRequest={({ onSuccess, onError, file }) => {
-                  setTimeout(() => {
-                    onSuccess();
-                  }, 0);
-                }}
-              >
-                <Button icon={<UploadOutlined />}>Upload Image</Button>
-              </Upload>
-              {/* {base64File && (
+          <div className="upperdiv">
+            <div className="promtdiv2">
+              <div className="imgtoimgdiv">
+                <Upload
+                  beforeUpload={beforeUpload}
+                  onChange={handleChange}
+                  showUploadList={false}
+                  customRequest={({ onSuccess, onError, file }) => {
+                    setTimeout(() => {
+                      onSuccess();
+                    }, 0);
+                  }}
+                >
+                  <Button icon={<UploadOutlined />}>Upload Image</Button>
+                </Upload>
+                {/* {base64File && (
                 <div>
                   <p>Base64 Encoded Image:</p>
                   <img
@@ -261,48 +269,51 @@ const ImageToImage = () => {
                   />
                 </div>
               )} */}
+              </div>
+              <h3>Prompt</h3>
+              <textarea
+                name="prompt"
+                className="prompttextarea"
+                rows={5}
+                placeholder="Enter prompt here"
+                value={prompt}
+                onChange={handleInputChange}
+                // onChange={handleChange}
+              ></textarea>
             </div>
-            <h3>Prompt</h3>
-            <textarea
-              name="prompt"
-              className="prompttextarea"
-              rows={5}
-              placeholder="Enter prompt here"
-              value={prompt}
-              onChange={handleInputChange}
-              // onChange={handleChange}
-            ></textarea>
-            
-          </div>
-          <div className="limg" >
-          {base64File && (
+            <div className="limg">
+              {base64File && (
                 <div>
                   {/* <p>Base64 Encoded Image:</p> */}
                   <img
                     src={`data:image/png;base64,${base64File}`}
                     alt="Uploaded"
-                    style={{ width:"180px",height:"210px",borderRadius:"16px",marginTop:"33px",marginBottom:"10px"}}
+                    style={{
+                      width: "180px",
+                      height: "210px",
+                      borderRadius: "16px",
+                      marginTop: "33px",
+                      marginBottom: "10px",
+                    }}
                   />
                 </div>
               )}
               {loading ? (
-              <button onClick={() => fetchData()} className="genratebtn">
-                Loading...
-              </button>
-            ) : (
-              <button onClick={() => fetchData()} className="genratebtn">
-                Generate
-              </button>
-            )}
+                <button onClick={() => fetchData()} className="genratebtn">
+                  Loading...
+                </button>
+              ) : (
+                <button onClick={() => fetchData()} className="genratebtn">
+                  Generate
+                </button>
+              )}
             </div>
-            </div>
-            <img src={originalimg} style={{height:"520px"}}/>
-          
-
+          </div>
+          <img src={originalimg} style={{ height: "520px" }} />
         </div>
         <div className="right">
-        <div className="promtdiv">
-        <h3 className="Advanced">
+          <div className="promtdiv">
+            <h3 className="Advanced">
               Advanced
               {/* {!advanced ? (
                 <MdKeyboardArrowDown
@@ -622,7 +633,7 @@ const ImageToImage = () => {
                 )}
               </>
             )}
-        </div>
+          </div>
         </div>
       </div>
       <div></div>

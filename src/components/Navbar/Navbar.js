@@ -9,11 +9,9 @@ const Navbar = () => {
   const [auth,setAuth]=useAuth()
   console.log(auth.name);
   const [isDropdownVisible, setDropdownVisible] = useState(false);
-
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
   };
-
   const navigate = useNavigate();
   const handleLogout = () => {
     setAuth({
@@ -45,27 +43,25 @@ const Navbar = () => {
         <li className="nav-item">
           <a className="nav-link" href="#">Blog</a>
         </li>
-        {auth.name ? <li className="nav-item d-flex ml-4">
-          <li className="nav-link name" ><strong>{auth.name}</strong></li>
-          <button className="btn btn-danger" onClick={handleLogout}>Signout</button>
-        </li> : 
+        {auth?.name ? <li className="nav-item d-flex ml-4 dropdown">
+          <li className="nav-link name dropdown" onClick={toggleDropdown} ><strong>{auth.name}</strong></li>
+          {isDropdownVisible && (
+                  <>
+                    <div className="dropdown-content">
+                      <p onClick={handleLogout}>Sign out</p>
+                    </div>
+                  </>
+                )}
+        </li> :
          <li className="nav-item ">
-          
             <button className='btn btn-primary mt-2' onClick={()=>navigate('/login')}>Login</button>
-            
-          
-        </li>  
+        </li>
         }
-        
-         
-         
       </ul>
-      
     </div>
   </div>
 </nav>
     </div>
   )
 }
-
 export default Navbar
