@@ -19,7 +19,7 @@ const Signup = () => {
         password,
         name,
       });
-      if (res && res.status===200) {
+      if (res && res.status === 200) {
         toast.success("Registration Successful");
         setTimeout(() => {
           navigate("/login");

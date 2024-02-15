@@ -12,7 +12,7 @@ console.log(location)
       const res = await axios.get(
         `http://localhost:8004/wrapper/findOneModel?name=${location.state.elemert.slug}`
       );
-   
+
       setDetails(res.data);
     } catch (error) {
       console.error("Error fetching data:", error);

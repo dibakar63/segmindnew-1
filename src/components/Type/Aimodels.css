@@ -7,7 +7,7 @@
   width: 70%;
   
   gap: 0.5rem;
-  margin-left: 30px;
+  
   margin-top: 30px;
   padding: 20px;
   background: rgb(255, 255, 255);
@@ -15,12 +15,52 @@
   color:black;
   border: 1px solid blue;
 }
-.ComponentWrapper {
-  padding-left: 2rem;
-  padding-left: 2rem;
+.promtdiv2{
+  padding: 1rem;
+  border: 1px solid grey;
+  border-radius: 30px;
   display: flex;
+  flex-direction: column;
+  width: 70%;
+  
+  gap: 0.5rem;
+  height: 200px;
+  margin-top: 30px;
+  padding: 20px;
+  background: rgb(255, 255, 255);
+  text-align: left;
+  color:black;
+  border: 1px solid blue;
+}
+.left{
+  padding-left: 2rem;
+}
+.upperdiv{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  padding: 10px;
+}
+
+.img11{
+  width: 200px;
+}
+.limg button{
+  background: rgb(222,51,226);
+  background: linear-gradient(90deg, rgba(222,51,226,1) 12%, rgba(62,65,220,1) 65%);
+  bottom: 0;
+  width: 200px;
+  height: 59px;
+  position: absolute;
+  border: none;
+}
+.ComponentWrapper {
+  padding-left: 20px;
+  
+  display: flex;
+  flex-direction: row;
  flex-wrap: wrap;
-  gap: 5rem;
+  gap: 2rem;
 }
 
 
@@ -31,9 +71,12 @@
   height: 350px;
 }
 .right{
-  width: 30%;
-  margin-top: 340px;
+  width: 40%;
+  margin-top: 40px;
+  
+  padding: 10px;
 }
+
 
 
 .promtdiv {
@@ -47,6 +90,8 @@
   gap: 0.5rem;
   border: 1px solid blue;
   width: 600px;
+  height: 100%;
+  padding: 1rem;
 
 }
 .promtdiv1 textarea{

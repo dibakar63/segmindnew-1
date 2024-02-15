@@ -26,7 +26,7 @@ const ImageToImage = () => {
   const location = useLocation();
   const model = location?.state?.details?.model;
   console.log(model);
-  const [advanced, setAdvancedtrue] = useState(false);
+  const [advanced, setAdvancedtrue] = useState(true);
   const [originalimg, setoriginalimg] = useState(
     model?.default_image_output || ""
   );
@@ -236,7 +236,8 @@ const ImageToImage = () => {
       
       <div className="ComponentWrapper">
         <div className="left">
-          <div className="promtdiv">
+        <div className="upperdiv">
+          <div className="promtdiv2">
             <div className="imgtoimgdiv">
               <Upload
                 beforeUpload={beforeUpload}
@@ -250,7 +251,7 @@ const ImageToImage = () => {
               >
                 <Button icon={<UploadOutlined />}>Upload Image</Button>
               </Upload>
-              {base64File && (
+              {/* {base64File && (
                 <div>
                   <p>Base64 Encoded Image:</p>
                   <img
@@ -259,7 +260,7 @@ const ImageToImage = () => {
                     style={{ maxWidth: "100%" }}
                   />
                 </div>
-              )}
+              )} */}
             </div>
             <h3>Prompt</h3>
             <textarea
@@ -271,9 +272,39 @@ const ImageToImage = () => {
               onChange={handleInputChange}
               // onChange={handleChange}
             ></textarea>
-            <h3 className="Advanced">
+            
+          </div>
+          <div className="limg" >
+          {base64File && (
+                <div>
+                  {/* <p>Base64 Encoded Image:</p> */}
+                  <img
+                    src={`data:image/png;base64,${base64File}`}
+                    alt="Uploaded"
+                    style={{ width:"180px",height:"210px",borderRadius:"16px",marginTop:"33px",marginBottom:"10px"}}
+                  />
+                </div>
+              )}
+              {loading ? (
+              <button onClick={() => fetchData()} className="genratebtn">
+                Loading...
+              </button>
+            ) : (
+              <button onClick={() => fetchData()} className="genratebtn">
+                Generate
+              </button>
+            )}
+            </div>
+            </div>
+            <img src={originalimg} style={{height:"520px"}}/>
+          
+
+        </div>
+        <div className="right">
+        <div className="promtdiv">
+        <h3 className="Advanced">
               Advanced
-              {!advanced ? (
+              {/* {!advanced ? (
                 <MdKeyboardArrowDown
                   onClick={() => setAdvancedtrue(true)}
                   className="arrow"
@@ -283,7 +314,7 @@ const ImageToImage = () => {
                   onClick={() => setAdvancedtrue(false)}
                   className="arrow"
                 />
-              )}
+              )} */}
             </h3>
 
             {advanced && (
@@ -591,13 +622,7 @@ const ImageToImage = () => {
                 )}
               </>
             )}
-            <button className="genratebtn" onClick={() => fetchData()}>
-              Generate
-            </button>
-          </div>
         </div>
-        <div className="right">
-          <img src={originalimg} />
         </div>
       </div>
       <div></div>

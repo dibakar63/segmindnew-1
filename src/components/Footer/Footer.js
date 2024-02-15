@@ -1,11 +1,12 @@
 import React from 'react'
 import './Footer.css'
+import Logo from '../assets/image.png';
 const Footer = () => {
   return (
     <div className='container-fluid footer'>
       <div className='row no-margin'>
         <div className='col-4'>
-            <h1>Legacies AI</h1>
+            <img className='logo1' src={Logo}/>
         </div>
         <div className='col' >
             <h3>Product</h3>
