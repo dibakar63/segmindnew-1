@@ -1,6 +1,12 @@
 
   .titleContent {
+    
     margin-left: 60px;
+  }
+  .input{
+    width: 330px;
+    height: 49px;
+    margin-right: 30px;
   }
   .titlebutton {
     display: flex;
@@ -10,6 +16,7 @@
     display: flex;
     gap: 2rem;
   }
+  
   .filterbtns {
     border: 1px solid rgb(25, 118, 210);
     color: rgb(25, 118, 210);
@@ -42,7 +49,7 @@
         border: none;
         border-radius: 16px;
         margin-left: 5px;
-        margin-top: 5px;
+        margin-top: 10px;
  }
  .input_btn{
     margin-top: 20px;
@@ -102,17 +109,18 @@
   }
   .imgdiv2 {
     width: 100%;
-    margin-left: 30px;
+    
     display: grid;
     row-gap: 1.5px;
+    column-gap: 1px;
     grid-template-columns: repeat(4, 1fr);
     place-items: center;
   
     justify-content: space-around;
   }
   .imgdiv2 img {
-    width: 400px;
-    height: 400px;
+    width: 300px;
+    height: 300px;
     cursor: pointer;
     border-radius: 20px;
   }
@@ -139,6 +147,10 @@ align-items: center;}
 .imgdiv2{
     grid-template-columns: repeat(3,1fr);
 }
+.titlebtninnerdiv{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
 
   }
   @media screen and (max-width:820px){
@@ -151,7 +163,7 @@ justify-content: center;
 align-items: center;}
 .titlebtninnerdiv{
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(2,1fr);
 }
 .imgDiv2{
     display: flex;
@@ -164,9 +176,15 @@ align-items: center;}
 }
 
   }
-  @media screen and (max-width:400px){
+  @media screen and (max-width:438px){
     .input_btn{
-        width: 500px;
+        width: 400px;
+    }
+    .input{
+      width: 200px;
+      margin-left: 3px;
+      margin-top: 2px;
+    
     }
     .titleContent{display: flex;
         flex-direction: column;
