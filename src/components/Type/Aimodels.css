@@ -1,23 +1,61 @@
-.ComponentWrapper {
-  padding: 6rem;
+.promtdiv1{
+  padding: 1rem;
+  border: 1px solid grey;
+  border-radius: 30px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
+  flex-direction: column;
+  width: 70%;
+  
+  gap: 0.5rem;
+  margin-left: 30px;
+  margin-top: 30px;
+  padding: 20px;
+  background: rgb(255, 255, 255);
+  text-align: center;
+  color:black;
+  border: 1px solid blue;
 }
-.right {
+.ComponentWrapper {
+  padding-left: 2rem;
+  padding-left: 2rem;
+  display: flex;
+ flex-wrap: wrap;
+  gap: 5rem;
+}
+
+
+.left img{
+  margin-left: 23px;
+  margin-top: 20px;
+  width: 50%;
+  height: 350px;
+}
+.right{
   width: 30%;
+  margin-top: 340px;
 }
-.left {
-  width: 60%;
-}
+
+
 .promtdiv {
   padding: 1rem;
   border: 1px solid grey;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
+  background:white;
+  color: black;
   gap: 0.5rem;
+  border: 1px solid blue;
+  width: 600px;
 
+}
+.promtdiv1 textarea{
+  border: 1px solid blue;
+  font-size: 15px;
+  overflow-y: hidden;
+}
+.Advanced{
+  text-align: center;
 }
 .innerdiv {
   display: flex;
@@ -29,9 +67,10 @@ button {
   color: white;
   cursor: pointer;
 }
-.right img {
-  height: 600px;
-  width: 400px;
+.left img {
+  border-radius: 16px;
+  height: 800px;
+  width: 800px;
 }
 .prompttextarea {
   font-size: 0.9rem;
@@ -85,7 +124,8 @@ h3 {
 }
 @media screen and (max-width:1120px) {
  .ComponentWrapper{display: flex;
-flex-direction: column;
+  padding: 2rem;
+flex-direction: row;
 align-items: center;
 justify-content: center;
 height: auto;
@@ -103,20 +143,21 @@ height: auto;
   
   margin-left: 0;
 }
-.right img{
+.left img{
   margin-left: 0;
   
-  width: 500px;
+  width: 350px;
 }
   
 }
 @media screen and (max-width:968px) {
   .ComponentWrapper{display: flex;
- flex-direction: column;
+ flex-direction: row;
  align-items: center;
  justify-content: center;
  height: auto;
  }
+ 
  .promtdiv{
    display: grid;
    grid-template-columns: 3,1fr;
@@ -129,7 +170,7 @@ height: auto;
    
    margin-left: 0;
  }
- .right img{
+ .left img{
    margin-left: 0;
    
    width: 400px;
@@ -138,7 +179,7 @@ height: auto;
    
 @media screen and (max-width:468px) {
   .ComponentWrapper{display: flex;
- flex-direction: column;
+ flex-direction: row;
  align-items: center;
  justify-content: center;
  width: 650px;
@@ -146,6 +187,7 @@ height: auto;
  
  
  }
+ .promtdiv1{width: 630px;}
  .imgtoimgdiv{
   display: flex;
   flex-direction: column;
@@ -158,7 +200,8 @@ height: auto;
    
    margin-left: 0;
  }
- .right img{
+ 
+ .left img{
    margin-left: 0;
    
    width: 300px;

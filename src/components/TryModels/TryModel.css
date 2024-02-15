@@ -8,7 +8,7 @@
   }
   .titlebtninnerdiv {
     display: flex;
-    gap: 2rem;
+    gap: 7rem;
   }
   .filterbtns {
     border: 1px solid rgb(25, 118, 210);
@@ -16,6 +16,7 @@
     background-color: white;
     border-radius: 16px;
     padding: 0.5rem 1rem;
+    width: 170px;
   }
   .active {
     color: white;
@@ -103,17 +104,22 @@
     width: 100%;
     margin-left: 30px;
     display: grid;
-    row-gap: 2px;
+    row-gap: 1.5px;
     grid-template-columns: repeat(4, 1fr);
     place-items: center;
   
     justify-content: space-around;
   }
   .imgdiv2 img {
-    width: 300px;
+    width: 400px;
     height: 400px;
     cursor: pointer;
     border-radius: 20px;
+  }
+  .imgdiv2 img:hover{
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
+  
+    transform: translateY(-5px);
   }
   
   @media screen and (max-width:1024px){

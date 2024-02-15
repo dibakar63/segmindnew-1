@@ -110,23 +110,30 @@ const TexttoImage = () => {
   };
 
   return (
-    <div>
-      <div className="ComponentWrapper">
+    
+    
+      <div className="  ComponentWrapper">
+      
      
-        <div className="left">
-          <div className="promtdiv">
-          <h3>Prompt</h3>
+        <div className="  left">
+        <div className="promtdiv1"><h3>Prompt</h3>
             <textarea
               name="prompt"
               className="prompttextarea"
-              rows={5}
+              cols={50}
+              rows={8}
               placeholder="Enter prompt here"
               value={prompt}
               onChange={handleInputChange}
               // onChange={handleChange}
-            ></textarea>
+            ></textarea></div>
+        <img src={image} />
+        </div>
+        <div className=" right">
+        <div className="promtdiv">
+          
             
-            <h3 className="Advanced">
+            <h3 className="Advanced " style={{textAlign:"center"}}>
               Advanced
               {!advanced ? (
                 <MdKeyboardArrowDown
@@ -256,8 +263,8 @@ const TexttoImage = () => {
                     </Col>
                   </Row>
                 </div>
-              </>
-            )}
+              </>)}
+           
             {loading ? (
               <button onClick={() => fetchData()} className="genratebtn">
                 Loading...
@@ -269,15 +276,10 @@ const TexttoImage = () => {
             )}
           </div>
         </div>
-        <div className="right">
-          <img src={image} />
-        </div>
       </div>
-      <div className="downDiv">
-        {/* <div className="DownDivleft">x</div>
-        <div className="DownDivRight">y</div> */}
-      </div>
-    </div>
+      
+      
+    
   );
 };
 

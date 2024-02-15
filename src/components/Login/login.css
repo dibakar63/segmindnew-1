@@ -9,6 +9,13 @@
     height: 800px;
     background: radial-gradient(circle, rgba(34,137,195,1) 0%, rgba(237,45,253,1) 100%);
 }
+.signupinput{
+    width: 470px;
+    height: 49px;
+    border-radius: 16px;
+    border: none;
+    padding: 1rem;
+}
 .loginw{width: 60%;
 
    
