@@ -520,7 +520,7 @@ const ImageToImage = () => {
                 {controlnet_scale > -1 && (
                   <>
                     <div className="innerdiv">
-                      <h3>Control Guidance endd</h3>
+                      <h3>Control Guidance end</h3>
                       <Row>
                         <Col span={12}>
                           <Slider
