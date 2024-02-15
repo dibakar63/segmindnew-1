@@ -40,6 +40,9 @@ const Login = () => {
   return (
     <div className="Login">
       <div className="loginw">
+      <div className="vector1"></div>
+      <div className="vector3"></div>
+      <div className="vector2"></div>
         <span>Hi! Welcome To Legacies AI</span>
       </div>
       <div className="loginCard">

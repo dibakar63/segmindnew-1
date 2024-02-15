@@ -7,7 +7,22 @@
     
     
     height: 800px;
-    background: radial-gradient(circle, rgba(34,137,195,1) 0%, rgba(237,45,253,1) 100%);
+     background: #E8E8E8;
+    ;
+}
+.vector1{
+    
+    width: 342px;
+height: 336px;
+top: 423px;
+left: 507px;
+opacity: 0.5px;
+background: #C439EA;
+
+
+}
+.vector2{
+
 }
 .signupinput{
     width: 470px;
