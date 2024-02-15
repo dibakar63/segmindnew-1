@@ -162,7 +162,7 @@ const Home = () => {
                     <p style={{fontSize:"16px",color:"white"}}>Experience the fastest stable diffusion APIs available today.</p>
                 </div>
                 <div className='col-5' >
-                    <button className='trymodels_btn'>Try Models</button>
+                    <button className='trymodels_btn' onClick={()=>navigate("/models")}>Try Models</button>
                 </div>
             </div>
         </div>

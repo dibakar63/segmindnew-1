@@ -84,7 +84,7 @@ const TexttoImage = () => {
     let url;
     const api_key = "SG_cdb02db099cb8b32";
 
-    url = `http://localhost:8000/wrapper/textToImage?name=${model?.slug}`;
+    url = `http://localhost:8004/wrapper/textToImage?name=${model?.slug}`;
 
     console.log(data);
 
