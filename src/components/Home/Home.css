@@ -62,7 +62,7 @@ position: absolute;
 top: -5%;
 left: 57%;
 height: 200px;
-z-index: -1;
+z-index: 1;
 border-radius: 16px;
 }
 .img7{
@@ -201,8 +201,8 @@ border-radius: 16px;
     color: black;
 }
 .models_inner img{
-    width: 400px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
 }
 .footer_content{
     display: flex;
@@ -242,6 +242,9 @@ border-radius: 16px;
     }
     .img8{
         display: none;
+    }
+    .img3{
+        left: 40%;
     }
     .content{display: flex;
     flex-direction: column;

@@ -288,13 +288,7 @@ const ImageToImage = () => {
                   <img
                     src={`data:image/png;base64,${base64File}`}
                     alt="Uploaded"
-                    style={{
-                      width: "180px",
-                      height: "210px",
-                      borderRadius: "16px",
-                      marginTop: "33px",
-                      marginBottom: "10px",
-                    }}
+                    style={{width:"180px",height:"130px",borderRadius:"16px",marginTop:"33px"}}
                   />
                 </div>
               )}

@@ -48,11 +48,12 @@ const Navbar = () => {
           {isDropdownVisible && (
                   <>
                     <div className="dropdown-content">
+                      
                       <p onClick={handleLogout}>Sign out</p>
                     </div>
                   </>
-                )}
-        </li> :
+                )}   
+        </li> : 
          <li className="nav-item ">
             <button className='btn btn-primary mt-2' onClick={()=>navigate('/login')}>Login</button>
         </li>

@@ -68,7 +68,7 @@ const TryModels = () => {
 
   return (
     <div className="container-fluid trymodel mt-30">
-      <div className="titleContent">
+      <div className=" titleContent">
         <input type="text" placeholder="Search Your AI generated Image Here" className="input_btn"/>
         <button className="search_btn2">Search</button>
         <div className="titlebutton">
@@ -111,7 +111,7 @@ const TryModels = () => {
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Controllenet"
               className="input"
-              style={{ marginRight: "30px", width: "330px",height:"49px" }}
+              
             />
           </div>
         </div>
@@ -138,7 +138,7 @@ const TryModels = () => {
           })}
       </div>
       <div style={{ marginTop: "20px" }}>
-        <div className="imgdiv2 imgcolumn">
+        <div className="container-fluid imgdiv2 imgcolumn">
           {data
             ?.slice(2)
             .filter((eq) => {

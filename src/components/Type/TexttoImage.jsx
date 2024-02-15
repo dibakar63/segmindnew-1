@@ -116,7 +116,7 @@ const TexttoImage = () => {
   };
 
   return (
-    <div className="  ComponentWrapper">
+    <div className=" ComponentWrapper">
       <div className="left">
         <div className="upperdiv">
           <div className="  promtdiv1">

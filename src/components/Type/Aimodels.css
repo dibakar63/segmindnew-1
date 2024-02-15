@@ -74,7 +74,7 @@
   width: 40%;
   margin-top: 40px;
   
-  padding: 10px;
+  padding-right: 10px;
 }
 
 
@@ -170,11 +170,43 @@ h3 {
 @media screen and (max-width:1120px) {
  .ComponentWrapper{display: flex;
   padding: 2rem;
-flex-direction: row;
+flex-direction: column;
 align-items: center;
 justify-content: center;
 height: auto;
 
+}
+.limg button{
+  margin-left: 5px;
+
+}
+.limg img{margin-left: 5px;}
+.promtdiv1{
+  width: 65%;
+}
+.upperdiv{
+  width: 100%;
+ 
+  
+  
+}
+.right{
+  width: 100%;
+ 
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+.left {
+  
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .promtdiv{
   display: grid;
@@ -191,7 +223,7 @@ height: auto;
 .left img{
   margin-left: 0;
   
-  width: 350px;
+  width: auto;
 }
   
 }
@@ -232,13 +264,13 @@ height: auto;
  
  
  }
- .promtdiv1{width: 630px;}
+ 
  .imgtoimgdiv{
   display: flex;
   flex-direction: column;
  }
  .promtdiv{
-   width: fit-content;
+   width: 70%;
    
  }
  .right{
