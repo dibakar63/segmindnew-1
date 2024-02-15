@@ -201,8 +201,8 @@ border-radius: 16px;
     color: black;
 }
 .models_inner img{
-    width: 400px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
 }
 .footer_content{
     display: flex;
