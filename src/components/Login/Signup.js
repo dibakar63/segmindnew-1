@@ -13,13 +13,13 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     try {
-      const res = await axios.post(`http://localhost:8000/auth/signup`, {
+      const res = await axios.post(`http://localhost:8004/auth/signup`, {
         username,
         phonenumber,
         password,
         name,
       });
-      if (res && res.status===200) {
+      if (res && res.status === 200) {
         toast.success("Registration Successful");
         setTimeout(() => {
           navigate("/login");

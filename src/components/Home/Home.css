@@ -200,6 +200,10 @@ border-radius: 16px;
     font-size: bolder;
     color: black;
 }
+.models_inner img{
+    width: 400px;
+    height: 300px;
+}
 .footer_content{
     display: flex;
     background: rgb(44,41,228);

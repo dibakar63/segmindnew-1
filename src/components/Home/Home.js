@@ -1,6 +1,13 @@
 import React from 'react'
 import './Home.css'
 import axios from 'axios';
+import image1 from '../assets/download (1).jpg'
+import image2 from '../assets/OIP.jpg'
+import image3 from '../assets/download (3).jpg'
+import image4 from '../assets/download (2).jpg'
+
+
+
 import { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 const Home = () => {
@@ -10,10 +17,11 @@ const Home = () => {
 
     const getdata = async () => {
       try {
-        const res = await axios.get(`http://localhost:8000/wrapper/findAllModel`);
+        const res = await axios.get(`http://localhost:8004/wrapper/findAllModel`);
   
         setData(res.data);
-        console.log(res.data);
+        setModels(res.data);
+        const data2=models.slice(0,1)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -23,7 +31,7 @@ const Home = () => {
     }, []);
     function getDetails(modelSlug) {
       return axios
-        .get(`http://localhost:8000/wrapper/findOneModel?name=${modelSlug}`)
+        .get(`http://localhost:8004/wrapper/findOneModel?name=${modelSlug}`)
         .then((response) => response.data)
         .catch((error) => {
           console.error(
@@ -122,14 +130,14 @@ const Home = () => {
         <div className='models'>
         <div className='models_inner'>
         <img className='img5'
-            src="https://th.bing.com/th?id=OIP.0EBbGqXsxfnIRTTEvqGa6wHaE4&w=308&h=202&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2"
+            src={image1}
             alt="person"
           />
           <span>For Designer</span>
           </div>
           <div className='models_inner'>
         <img className='img5'
-            scr="https://th.bing.com/th/id/OIP.QtoU2Gn-n5fqNjBDLjeDFQHaFj?w=217&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"
+            src={image2}
             alt="person"
           />
 
@@ -138,7 +146,7 @@ const Home = () => {
           </div>
           <div className='models_inner'>
         <img className='img5'
-            src="https://th.bing.com/th?id=OIP.0EBbGqXsxfnIRTTEvqGa6wHaE4&w=308&h=202&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2"
+            src={image3}
             alt="person"
           />
           <span>For developers</span>
@@ -146,7 +154,7 @@ const Home = () => {
           </div>
           <div className='models_inner'>
         <img className='img5'
-            src="https://th.bing.com/th?id=OIP.0EBbGqXsxfnIRTTEvqGa6wHaE4&w=308&h=202&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2"
+            src={image4}
             alt="person"
           />
           <span>For Content Creaters</span>

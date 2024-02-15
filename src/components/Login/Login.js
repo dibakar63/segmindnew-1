@@ -14,13 +14,13 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     try {
-      const res = await axios.post(`http://localhost:8000/auth/signin`, {
+      const res = await axios.post(`http://localhost:8004/auth/signin`, {
         username,
         password,
       });
-      if (res && res.status===200) {
+      if (res && res.status === 200) {
         toast.success("login successful");
-        console.log(res)
+        console.log(res);
         setAuth({
           ...auth,
           name: res.data.name,
@@ -40,9 +40,9 @@ const Login = () => {
   return (
     <div className="Login">
       <div className="loginw">
-      <div className="vector1"></div>
-      <div className="vector3"></div>
-      <div className="vector2"></div>
+        <div className="vector1"></div>
+        <div className="vector3"></div>
+        <div className="vector2"></div>
         <span>Hi! Welcome To Legacies AI</span>
       </div>
       <div className="loginCard">
@@ -80,7 +80,7 @@ const Login = () => {
             placeholder="Enter your name"
             className="signupinput"
             value={username}
-            onChange={(e)=>setusername(e.target.value)}
+            onChange={(e) => setusername(e.target.value)}
           />
 
           <span>
@@ -92,7 +92,7 @@ const Login = () => {
             placeholder="Enter Password"
             className="signupinput"
             value={password}
-            onChange={(e)=>setpassword(e.target.value)}
+            onChange={(e) => setpassword(e.target.value)}
           />
         </div>
         <br />
@@ -118,7 +118,7 @@ const Login = () => {
             fontSize: "15px",
             cursor: "pointer",
           }}
-          onClick={()=>handleSubmit()}
+          onClick={() => handleSubmit()}
         >
           Login
         </button>

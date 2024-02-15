@@ -23,7 +23,7 @@ const TexttoImage = () => {
   const location = useLocation();
   const model = location?.state?.details?.model;
 
-  const [advanced, setAdvancedtrue] = useState(false);
+  const [advanced, setAdvancedtrue] = useState(true);
   const [image, setImage] = useState(model?.default_image_output || "");
   const [prompt, setPrompt] = useState(
     model?.parameters?.prompt?.displayValue || ""
@@ -115,8 +115,9 @@ const TexttoImage = () => {
       <div className="  ComponentWrapper">
       
      
-        <div className="  left">
-        <div className="promtdiv1"><h3>Prompt</h3>
+        <div className="left">
+        <div className="upperdiv">
+        <div className="  promtdiv1"><h3>Prompt</h3>
             <textarea
               name="prompt"
               className="prompttextarea"
@@ -126,8 +127,22 @@ const TexttoImage = () => {
               value={prompt}
               onChange={handleInputChange}
               // onChange={handleChange}
-            ></textarea></div>
-        <img src={image} />
+            ></textarea>
+            </div>
+            <div className="limg" >
+            <img src={image} style={{width:"180px",height:"210px",borderRadius:"16px",marginTop:"33px"}}/>
+              {loading ? (
+              <button onClick={() => fetchData()} className="genratebtn">
+                Loading...
+              </button>
+            ) : (
+              <button onClick={() => fetchData()} className="genratebtn">
+                Generate
+              </button>
+            )}
+            </div></div>
+        <img src={image} style={{height:"420px"}}/>
+        
         </div>
         <div className=" right">
         <div className="promtdiv">
@@ -135,7 +150,7 @@ const TexttoImage = () => {
             
             <h3 className="Advanced " style={{textAlign:"center"}}>
               Advanced
-              {!advanced ? (
+              {/* {!advanced ? (
                 <MdKeyboardArrowDown
                   onClick={() => setAdvancedtrue(true)}
                   className="arrow"
@@ -145,7 +160,7 @@ const TexttoImage = () => {
                   onClick={() => setAdvancedtrue(false)}
                   className="arrow"
                 />
-              )}
+              )} */}
             </h3>
 
             {advanced && (
@@ -265,7 +280,7 @@ const TexttoImage = () => {
                 </div>
               </>)}
            
-            {loading ? (
+            {/* {loading ? (
               <button onClick={() => fetchData()} className="genratebtn">
                 Loading...
               </button>
@@ -273,7 +288,7 @@ const TexttoImage = () => {
               <button onClick={() => fetchData()} className="genratebtn">
                 Generate
               </button>
-            )}
+            )} */}
           </div>
         </div>
       </div>

@@ -27,7 +27,7 @@ const TryModels = () => {
 
   function getDetails(modelSlug) {
     return axios
-      .get(`http://localhost:800/wrapper/findOneModel?name=${modelSlug}`)
+      .get(`http://localhost:8004/wrapper/findOneModel?name=${modelSlug}`)
       .then((response) => response.data)
       .catch((error) => {
         console.error(
@@ -111,7 +111,7 @@ const TryModels = () => {
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Controllenet"
               className="input"
-              style={{ marginRight: "30px", width: "230px" }}
+              style={{ marginRight: "30px", width: "330px",height:"49px" }}
             />
           </div>
         </div>
