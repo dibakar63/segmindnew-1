@@ -10,7 +10,7 @@ const Home = () => {
 
     const getdata = async () => {
       try {
-        const res = await axios.get(`http://localhost:8000/wrapper/findAllModel`);
+        const res = await axios.get(`http://localhost:8004/wrapper/findAllModel`);
   
         setData(res.data);
         console.log(res.data);
@@ -23,7 +23,7 @@ const Home = () => {
     }, []);
     function getDetails(modelSlug) {
       return axios
-        .get(`http://localhost:8000/wrapper/findOneModel?name=${modelSlug}`)
+        .get(`http://localhost:8004/wrapper/findOneModel?name=${modelSlug}`)
         .then((response) => response.data)
         .catch((error) => {
           console.error(
