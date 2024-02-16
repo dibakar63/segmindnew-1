@@ -3,6 +3,7 @@ import "./login.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { API } from "../../Constants/Api";
 
 const Signup = () => {
   const [username, setusername] = useState("");
@@ -13,7 +14,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     try {
-      const res = await axios.post(`http://localhost:8004/auth/signup`, {
+      const res = await axios.post(`${API}/auth/signup`, {
         username,
         phonenumber,
         password,

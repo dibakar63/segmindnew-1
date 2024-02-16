@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import LoadingSmall from "./LoadingSmall";
 import "../TryModels/TryModel.css";
+import { API } from "../../Constants/Api";
 
 const FilterPage = () => {
   const location = useLocation();
@@ -29,7 +30,7 @@ const FilterPage = () => {
   const gettexttoImage = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8004/wrapper/textToImagedisplay"
+        `${API}/wrapper/textToImagedisplay`
       );
       setFilterdata(res.data);
     } catch (error) {
@@ -53,7 +54,7 @@ const FilterPage = () => {
   const getutilityfunctions = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8004/wrapper/utilityFunctiondisplay"
+        `${API}/wrapper/utilityFunctiondisplay`
       );
       setFilterdata(res.data);
     } catch (error) {
@@ -65,7 +66,7 @@ const FilterPage = () => {
   const getControlnets = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8004/wrapper/controlnetsdisplay"
+        `${API}/wrapper/controlnetsdisplay`
       );
       setFilterdata(res.data);
     } catch (error) {

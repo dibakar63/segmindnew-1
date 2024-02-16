@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { API } from "../../Constants/Api";
 
 const Type = () => {
   const location = useLocation();
@@ -10,7 +11,7 @@ const Type = () => {
   const getdata = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8004/wrapper/findOneModel?name=${location.state.elemert.slug}`
+        `${API}/wrapper/findOneModel?name=${location.state.elemert.slug}`
       );
 
       setDetails(res.data);

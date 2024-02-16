@@ -8,6 +8,7 @@ import image4 from "../assets/download (2).jpg";
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { API } from "../../Constants/Api";
 const Home = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
@@ -15,7 +16,7 @@ const Home = () => {
 
   const getdata = async () => {
     try {
-      const res = await axios.get(`http://localhost:8004/wrapper/findAllModel`);
+      const res = await axios.get(`${API}/wrapper/findAllModel`);
 
       setData(res.data);
       setModels(res.data);
@@ -27,17 +28,7 @@ const Home = () => {
   useEffect(() => {
     getdata();
   }, []);
-  function getDetails(modelSlug) {
-    return axios
-      .get(`http://localhost:8004/wrapper/findOneModel?name=${modelSlug}`)
-      .then((response) => response.data)
-      .catch((error) => {
-        console.error(
-          `Error fetching details for model ${modelSlug}: ${error}`
-        );
-        throw error;
-      });
-  }
+
 
   const handleOnClick = (element) => {
     console.log(element);

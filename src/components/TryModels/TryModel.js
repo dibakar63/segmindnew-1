@@ -3,6 +3,7 @@ import "./TryModel.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API } from "../../Constants/Api";
 const TryModels = () => {
   const [data, setData] = useState([]);
   const [texttoimagearray, settexttoImageArray] = useState([]);
@@ -25,17 +26,7 @@ const TryModels = () => {
     getdata();
   }, []);
 
-  function getDetails(modelSlug) {
-    return axios
-      .get(`http://localhost:8004/wrapper/findOneModel?name=${modelSlug}`)
-      .then((response) => response.data)
-      .catch((error) => {
-        console.error(
-          `Error fetching details for model ${modelSlug}: ${error}`
-        );
-        throw error;
-      });
-  }
+ 
 
   const handleOnClick = (element) => {
     console.log(element);

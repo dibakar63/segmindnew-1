@@ -5,6 +5,7 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import axios from "axios";
 import "./Aimodels.css";
 import { useAuth } from "../Context/auth";
+import { API } from "../../Constants/Api";
 
 const TexttoImage = () => {
   const [auth, setAuth] = useAuth();
@@ -89,7 +90,7 @@ const TexttoImage = () => {
       let url;
       const api_key = "SG_cdb02db099cb8b32";
 
-      url = `http://localhost:8004/wrapper/textToImage?name=${model?.slug}`;
+      url = `${API}/wrapper/textToImage?name=${model?.slug}`;
 
       console.log(data);
 

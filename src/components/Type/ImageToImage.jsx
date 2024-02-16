@@ -8,6 +8,7 @@ import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { message, Upload, Button } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { useAuth } from "../Context/auth";
+import { API } from "../../Constants/Api";
 
 const ImageToImage = () => {
   const [auth, setAuth] = useAuth();
@@ -216,7 +217,7 @@ const ImageToImage = () => {
       let url;
       const api_key = "SG_cdb02db099cb8b32";
 
-      url = `http://localhost:8004/wrapper/imageToImage?name=${model?.slug}`;
+      url = `${API}/wrapper/imageToImage?name=${model?.slug}`;
 
       try {
         setLoading(true);
