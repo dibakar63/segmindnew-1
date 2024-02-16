@@ -1,78 +1,61 @@
-
-.footer{
-    
-    margin-top: 60px;
-    height: 240px;
-    background-color: navy;
-    color: rgb(244, 240, 240);
-    padding: 5rem;
-    text-align: left;
-    justify-content: center;
-    align-items: center;
+.footer {
+  margin-top: 60px;
+  height: 240px;
+  background-color: navy;
+  color: rgb(244, 240, 240);
+  padding: 5rem;
+  text-align: left;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+}
+.logo1 {
+  width: 190px;
+  height: 50px;
+  cursor: pointer;
+  background: white;
+  padding: 3px;
+  border-radius: 5px;
+}
+.footer li {
+  list-style: none;
+}
+@media (max-width: 578px) {
+  .container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+    padding-bottom: 0;
+  }
+  .row.no-margin {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .container-fluid {
+    width: 650px;
+    height: auto;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .row.no-margin {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .footer {
     bottom: 0;
-   
-   
+  }
 }
-.logo1{
-    
-        width: 190px;
-        height: 50px;
-        cursor: pointer;
-        background: white;
-        padding: 3px;
-        border-radius: 5px;
-    
+@media screen and (max-width: 1300px) {
+  .row.no-margin {
+    margin-left: 0;
+    margin-right: 0;
+  }
 }
-.footer li{
-    list-style: none;
+@media screen and (max-width: 468px) {
+  .container-fluid {
+    width: 650px;
+    height: auto;
+  }
+  .footer {
+    position: fixed;
+  }
 }
-@media  (max-width:578px ) {
-    .container-fluid{
-        padding-right: 0;
-        padding-left: 0;
-        padding-bottom: 0;
-    }
-    .row.no-margin{
-        margin-left: 0;
-        margin-right: 0;
-    }
-    .container-fluid{
-        width: 650px;
-        height: auto;
-   }
-}
-@media screen and (min-width:1024px) {
-    
-    .row.no-margin{
-        margin-left: 0;
-        margin-right: 0;
-    }
-    .footer{
-
-        
-   
-
-        bottom:0;
-        
-    }
-        
-
-}
-@media screen and (max-width:1300px) {
-    
-    .row.no-margin{
-        margin-left: 0;
-        margin-right: 0;
-    }
-}
-@media screen and (max-width:468px){
-    .container-fluid{
-         width: 650px;
-         height: auto;
-    }
-    .footer{
-        position: fixed;
-    }
-}
-
-

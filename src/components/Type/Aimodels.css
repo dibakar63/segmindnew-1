@@ -1,53 +1,57 @@
-.promtdiv1{
+.promtdiv1 {
   padding: 1rem;
   border: 1px solid grey;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
   width: 70%;
-  
+
   gap: 0.5rem;
-  
+
   margin-top: 30px;
   padding: 20px;
   background: rgb(255, 255, 255);
   text-align: center;
-  color:black;
+  color: black;
   border: 1px solid blue;
 }
-.promtdiv2{
+.promtdiv2 {
   padding: 1rem;
   border: 1px solid grey;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
   width: 70%;
-  
+
   gap: 0.5rem;
   height: 200px;
   margin-top: 30px;
   padding: 20px;
   background: rgb(255, 255, 255);
   text-align: left;
-  color:black;
+  color: black;
   border: 1px solid blue;
 }
-.left{
+.left {
   padding-left: 2rem;
 }
-.upperdiv{
+.upperdiv {
   display: flex;
   flex-direction: row;
   position: relative;
   padding: 10px;
 }
 
-.img11{
+.img11 {
   width: 200px;
 }
-.limg button{
-  background: rgb(222,51,226);
-  background: linear-gradient(90deg, rgba(222,51,226,1) 12%, rgba(62,65,220,1) 65%);
+.limg button {
+  background: rgb(222, 51, 226);
+  background: linear-gradient(
+    90deg,
+    rgba(222, 51, 226, 1) 12%,
+    rgba(62, 65, 220, 1) 65%
+  );
   bottom: 0;
   width: 200px;
   height: 59px;
@@ -56,28 +60,25 @@
 }
 .ComponentWrapper {
   padding-left: 20px;
-  
+
   display: flex;
   flex-direction: row;
- flex-wrap: wrap;
+  flex-wrap: wrap;
   gap: 2rem;
 }
 
-
-.left img{
+.left img {
   margin-left: 23px;
   margin-top: 20px;
   width: 50%;
   height: 350px;
 }
-.right{
+.right {
   width: 40%;
   margin-top: 40px;
-  
+
   padding-right: 10px;
 }
-
-
 
 .promtdiv {
   padding: 1rem;
@@ -85,21 +86,20 @@
   border-radius: 30px;
   display: flex;
   flex-direction: column;
-  background:white;
+  background: white;
   color: black;
   gap: 0.5rem;
   border: 1px solid blue;
   width: 600px;
   height: 100%;
   padding: 1rem;
-
 }
-.promtdiv1 textarea{
+.promtdiv1 textarea {
   border: 1px solid blue;
   font-size: 15px;
   overflow-y: hidden;
 }
-.Advanced{
+.Advanced {
   text-align: center;
 }
 .innerdiv {
@@ -141,15 +141,14 @@ button {
   cursor: pointer;
 }
 h3 {
-  margin:0
+  margin: 0;
 }
-.checkboxdiv{
+.checkboxdiv {
   display: flex;
   gap: 1rem;
   padding: 0.3rem;
-
 }
-.genratebtn{
+.genratebtn {
   padding: 0.8rem 2rem;
   display: flex;
   color: white;
@@ -159,130 +158,118 @@ h3 {
   border-radius: 50px;
   font-size: 0.9rem;
 }
-.imgtoimgdiv{
+.imgtoimgdiv {
   width: 100%;
-  
 }
-.imgtoimgdiv img{
+.imgtoimgdiv img {
   width: 100%;
   height: 100%;
 }
-@media screen and (max-width:1120px) {
- .ComponentWrapper{display: flex;
-  padding: 2rem;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-height: auto;
+@media screen and (max-width: 1120px) {
+  .ComponentWrapper {
+    display: flex;
+    padding: 2rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+  }
+  .limg button {
+    margin-left: 5px;
+  }
+  .limg img {
+    margin-left: 5px;
+  }
+  .promtdiv1 {
+    width: 65%;
+  }
+  .upperdiv {
+    width: 100%;
+  }
+  .right {
+    width: 100%;
 
-}
-.limg button{
-  margin-left: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .left {
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .promtdiv {
+    display: grid;
+    grid-template-columns: 3, 1fr;
 
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .right {
+    margin-left: 0;
+  }
+  .left img {
+    margin-left: 0;
+
+    width: auto;
+  }
 }
-.limg img{margin-left: 5px;}
-.promtdiv1{
-  width: 65%;
+@media screen and (max-width: 968px) {
+  .ComponentWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+  }
+
+  .promtdiv {
+    display: grid;
+    grid-template-columns: 3, 1fr;
+
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .right {
+    margin-left: 0;
+  }
+  .left img {
+    margin-left: 0;
+
+    width: 400px;
+  }
 }
-.upperdiv{
-  width: 100%;
- 
-  
-  
+
+@media screen and (max-width: 468px) {
+  .ComponentWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 650px;
+    height: 1000px;
+  }
+
+  .imgtoimgdiv {
+    display: flex;
+    flex-direction: column;
+  }
+  .promtdiv {
+    width: 70%;
+  }
+  .right {
+    margin-left: 0;
+  }
+
+  .left img {
+    margin-left: 0;
+
+    width: 300px;
+    height: auto;
+  }
 }
-.right{
-  width: 100%;
- 
-  padding: 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-}
-.left {
-  
-  padding: 2px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.promtdiv{
-  display: grid;
-  grid-template-columns: 3,1fr;
-  
-  
-  margin-left: 0;
-  margin-right: 0;
-}
-.right{
-  
-  margin-left: 0;
-}
-.left img{
-  margin-left: 0;
-  
-  width: auto;
-}
-  
-}
-@media screen and (max-width:968px) {
-  .ComponentWrapper{display: flex;
- flex-direction: row;
- align-items: center;
- justify-content: center;
- height: auto;
- }
- 
- .promtdiv{
-   display: grid;
-   grid-template-columns: 3,1fr;
-   
-   
-   margin-left: 0;
-   margin-right: 0;
- }
- .right{
-   
-   margin-left: 0;
- }
- .left img{
-   margin-left: 0;
-   
-   width: 400px;
- }
-}
-   
-@media screen and (max-width:468px) {
-  .ComponentWrapper{display: flex;
- flex-direction: row;
- align-items: center;
- justify-content: center;
- width: 650px;
- height: 1000px;
- 
- 
- }
- 
- .imgtoimgdiv{
-  display: flex;
-  flex-direction: column;
- }
- .promtdiv{
-   width: 70%;
-   
- }
- .right{
-   
-   margin-left: 0;
- }
- 
- .left img{
-   margin-left: 0;
-   
-   width: 300px;
-   height: auto;
- }
-   
- }

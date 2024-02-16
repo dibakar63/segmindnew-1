@@ -1,69 +1,69 @@
 .nav-item {
-    margin-right: 40px;
-    font-size: 20px;
+  margin-right: 40px;
+  font-size: 20px;
 }
-.logo{
-    width: 170px;
-    height: 50px;
-    cursor: pointer;
+.logo {
+  width: 170px;
+  height: 50px;
+  cursor: pointer;
 }
 .dropdown {
-    position: relative;
-    display: inline-block;
-    margin-right: 10px;
-  
-    display: flex;
-    align-items: center;
-  }
-  .dropdown-content {
-    /* display: none; */
-    position: absolute;
-  
-    top: 85%;
-    background-color: white;
-     
-    width: 97px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    z-index: 1;
-  }
-  .dropdown-content p {
-    color: grey;
-    padding: 6px 8px;
-  
-    display: block;
-    cursor: pointer;
-  }
-  
-  
-  .dropdown-content p:hover {
-    background-color: lightgray;
-  }
-  
-.name{border: 1px solid rgb(51, 23, 233);
-border-radius: 16px;
-margin-right: 5px;
-cursor: pointer;}
-.navbar_main{
-   width: 100%;
-    box-shadow: 0px 5px 20px -2px rgba(229,42,225,0.67);
--webkit-box-shadow: 0px 5px 20px -2px rgba(229,42,225,0.67);
--moz-box-shadow: 0px 5px 20px -2px rgba(229,42,225,0.67);
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+
+  display: flex;
+  align-items: center;
 }
-@media screen and (max-width:390px){
-    .navbar_main{
-        width: 650px;
-        height: auto;
-        
-    }
+.dropdown-content {
+  /* display: none; */
+  position: absolute;
+
+  top: 85%;
+  background-color: white;
+
+  width: 97px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
-@media screen and (max-width:468px){
-    .navbar_main{
-         width: 650px;
-    }
+.dropdown-content p {
+  color: grey;
+  padding: 6px 8px;
+
+  display: block;
+  cursor: pointer;
 }
-@media  screen and (max-width:578px) {
-    .container-fluid{
-        width: 650px;
-        height: auto;
+
+.dropdown-content p:hover {
+  background-color: lightgray;
 }
+
+.name {
+  border: 1px solid rgb(51, 23, 233);
+  border-radius: 16px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.navbar_main {
+  width: 100%;
+  box-shadow: 0px 5px 20px -2px rgba(229, 42, 225, 0.67);
+  -webkit-box-shadow: 0px 5px 20px -2px rgba(229, 42, 225, 0.67);
+  -moz-box-shadow: 0px 5px 20px -2px rgba(229, 42, 225, 0.67);
+}
+@media screen and (max-width: 390px) {
+  .navbar_main {
+    width: 650px;
+    height: auto;
+  }
+}
+@media screen and (max-width: 468px) {
+  .navbar_main {
+    width: 650px;
+  }
+}
+@media screen and (max-width: 578px) {
+  .container-fluid {
+    width: 650px;
+    height: auto;
+  }
 }

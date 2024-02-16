@@ -285,16 +285,6 @@ const TexttoImage = () => {
               </div>
             </>
           )}
-
-          {/* {loading ? (
-              <button onClick={() => fetchData()} className="genratebtn">
-                Loading...
-              </button>
-            ) : (
-              <button onClick={() => fetchData()} className="genratebtn">
-                Generate
-              </button>
-            )} */}
         </div>
       </div>
     </div>

@@ -38,7 +38,7 @@ const TryModels = () => {
   }
 
   const handleOnClick = (element) => {
-    console.log(element)
+    console.log(element);
     navigate(`/models/type`, { state: { elemert: element } });
   };
 
@@ -66,28 +66,33 @@ const TryModels = () => {
     });
   };
 
-  const handleSearch=async()=>{
+  const handleSearch = async () => {
     try {
-      const res = await axios.get(`http://localhost:8004/wrapper/searchModel?title=${query}`);
-     setData(res.data);
-  
-    
+      const res = await axios.get(
+        `http://localhost:8004/wrapper/searchModel?title=${query}`
+      );
+      setData(res.data);
+
       // Handle the response data as needed
     } catch (error) {
       console.error("Error fetching data:", error);
       // Handle the error
     }
-  }
-
-
-
- 
+  };
 
   return (
     <div className="container-fluid trymodel mt-30">
       <div className=" titleContent">
-        <input type="text" placeholder="Search Your AI generated Image Here" className="input_btn" value={query} onChange={(e)=>setQuery(e.target.value)}/>
-        <button className="search_btn2" onClick={handleSearch}>Search</button>
+        <input
+          type="text"
+          placeholder="Search Your AI generated Image Here"
+          className="input_btn"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button className="search_btn2" onClick={handleSearch}>
+          Search
+        </button>
         <div className="titlebutton">
           <div className="titlebtninnerdiv">
             <button
@@ -104,7 +109,7 @@ const TryModels = () => {
               }`}
               onClick={() => decideType("imageToImage", "imageToImage")}
             >
-              Image to Image 
+              Image to Image
             </button>
             <button
               className={`filterbtns ${
@@ -136,7 +141,7 @@ const TryModels = () => {
       <div className="imgDiv2 imgflex">
         {data
           ?.slice(0, 2)
-          
+
           .map((element) => {
             return (
               <div>
@@ -152,10 +157,10 @@ const TryModels = () => {
         <div className="container-fluid imgdiv2 imgcolumn">
           {data
             ?.slice(2)
-          
+
             .map((element) => {
               return (
-                <div style={{ marginTop: "15px" }} >
+                <div style={{ marginTop: "15px" }}>
                   <img
                     src={element.default_image_output}
                     onClick={() => handleOnClick(element)}
