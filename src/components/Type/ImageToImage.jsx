@@ -275,7 +275,7 @@ const ImageToImage = () => {
             
           </div>
           <div className="limg" >
-          {base64File && (
+           {base64File && (
                 <div>
                   {/* <p>Base64 Encoded Image:</p> */}
                   <img
@@ -284,7 +284,7 @@ const ImageToImage = () => {
                     style={{width:"180px",height:"130px",borderRadius:"16px",marginTop:"33px"}}
                   />
                 </div>
-              )}
+              )} 
               {loading ? (
               <button onClick={() => fetchData()} className="genratebtn">
                 Loading...
