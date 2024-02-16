@@ -4,8 +4,10 @@ import { Col, InputNumber, Row, Slider, Space } from "antd";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import axios from "axios";
 import "./Aimodels.css";
+import { useAuth } from "../Context/auth";
 
 const TexttoImage = () => {
+  const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -81,43 +83,44 @@ const TexttoImage = () => {
     samples: 1,
   };
   const fetchData = async () => {
-    let url;
-    const api_key = "SG_cdb02db099cb8b32";
+    if (!auth?.name) {
+      navigate("/login");
+    } else {
+      let url;
+      const api_key = "SG_cdb02db099cb8b32";
 
-    url = `http://localhost:8004/wrapper/textToImage?name=${model?.slug}`;
+      url = `http://localhost:8004/wrapper/textToImage?name=${model?.slug}`;
 
-    console.log(data);
+      console.log(data);
 
-    try {
-      setLoading(true);
-      const response = await axios.post(url, data, {
-        headers: {
-          "x-api-key": api_key,
-          "Content-Type": "application/json",
-        },
-        responseType: "arraybuffer",
-      });
+      try {
+        setLoading(true);
+        const response = await axios.post(url, data, {
+          headers: {
+            "x-api-key": api_key,
+            "Content-Type": "application/json",
+          },
+          responseType: "arraybuffer",
+        });
 
-      const imageBlob = new Blob([response.data]);
-      const imageDataUrl = URL.createObjectURL(imageBlob);
+        const imageBlob = new Blob([response.data]);
+        const imageDataUrl = URL.createObjectURL(imageBlob);
 
-      setImage(imageDataUrl);
-      setLoading(false);
-    } catch (error) {
-      console.error("Error fetching image:", error);
-      setLoading(false);
+        setImage(imageDataUrl);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching image:", error);
+        setLoading(false);
+      }
     }
   };
 
   return (
-    
-    
-      <div className="  ComponentWrapper">
-      
-     
-        <div className=" left">
+    <div className=" ComponentWrapper">
+      <div className="left">
         <div className="upperdiv">
-        <div className="  promtdiv1"><h3>Prompt</h3>
+          <div className="  promtdiv1">
+            <h3>Prompt</h3>
             <textarea
               name="prompt"
               className="prompttextarea"
@@ -128,10 +131,18 @@ const TexttoImage = () => {
               onChange={handleInputChange}
               // onChange={handleChange}
             ></textarea>
-            </div>
-            <div className="limg" >
-            <img src={image} style={{width:"180px",height:"210px",borderRadius:"16px",marginTop:"33px"}}/>
-              {loading ? (
+          </div>
+          <div className="limg">
+            <img
+              src={image}
+              style={{
+                width: "180px",
+                height: "210px",
+                borderRadius: "16px",
+                marginTop: "33px",
+              }}
+            />
+            {loading ? (
               <button onClick={() => fetchData()} className="genratebtn">
                 Loading...
               </button>
@@ -140,17 +151,15 @@ const TexttoImage = () => {
                 Generate
               </button>
             )}
-            </div></div>
-        <img src={image} style={{height:"420px"}}/>
-        
+          </div>
         </div>
-        <div className=" right">
+        <img src={image} style={{ height: "420px" }} />
+      </div>
+      <div className=" right">
         <div className="promtdiv">
-          
-            
-            <h3 className="Advanced " style={{textAlign:"center"}}>
-              Advanced
-              {/* {!advanced ? (
+          <h3 className="Advanced " style={{ textAlign: "center" }}>
+            Advanced
+            {/* {!advanced ? (
                 <MdKeyboardArrowDown
                   onClick={() => setAdvancedtrue(true)}
                   className="arrow"
@@ -161,126 +170,123 @@ const TexttoImage = () => {
                   className="arrow"
                 />
               )} */}
-            </h3>
+          </h3>
 
-            {advanced && (
-              <>
-                <div className="innerdiv">
-                  <h3>Seed</h3>
-                  <input
-                    onChange={handleInputChange}
-                    type="number"
-                    value={seed}
-                    name="seed"
-                    className="promptinput"
-                  />
-                </div>
-                <div className="checkboxdiv">
-                  <input type="checkbox" />
-                  <span>Randomize seed</span>
-                </div>
+          {advanced && (
+            <>
+              <div className="innerdiv">
+                <h3>Seed</h3>
+                <input
+                  onChange={handleInputChange}
+                  type="number"
+                  value={seed}
+                  name="seed"
+                  className="promptinput"
+                />
+              </div>
+              <div className="checkboxdiv">
+                <input type="checkbox" />
+                <span>Randomize seed</span>
+              </div>
 
-                <div className="innerdiv">
-                  <h3>Negative Prompt</h3>
-                  <input
-                    onChange={handleInputChange}
-                    type="text"
-                    value={negative_prompt}
-                    name="negative_prompt"
-                    className="promptinput"
-                  />
-                </div>
-                <div className="innerdiv">
-                  <h3>Scheduler</h3>
-                  <select
-                    onChange={handleInputChange}
-                    value={scheduler}
-                    name="scheduler"
-                    className="promptinput"
-                  >
-                    <option value="DDIM">DDIM</option>
-                    <option value="DPM Multi">DPM Multi</option>
-                    <option value="DPM Single">DPM Single</option>
-                    <option value="Euler a">Euler a</option>
-                    <option value="DPM2 a Karras">DPM2 a Karras</option>
-                    <option value="DDM2 Karas">DDM2 Karas</option>
-                    <option value="LMS">LMS</option>
-                  </select>
-                </div>
-                <div className="innerdiv">
-                  <h3>Steps</h3>
-                  <Row>
-                    <Col span={12}>
-                      <Slider
-                        min={1}
-                        max={20}
-                        onChange={(value) =>
-                          handleInputChange({
-                            target: { name: "num_inference_steps", value },
-                          })
-                        }
-                        value={
-                          typeof num_inference_steps === "number"
-                            ? num_inference_steps
-                            : 1
-                        }
-                      />
-                    </Col>
-                    <Col span={4}>
-                      <InputNumber
-                        min={1}
-                        max={20}
-                        style={{ margin: "0 16px" }}
-                        value={
-                          typeof num_inference_steps === "number"
-                            ? num_inference_steps
-                            : 1
-                        }
-                        name="num_inference_steps"
-                        onChange={handleInputChange}
-                      />
-                    </Col>
-                  </Row>
-                </div>
+              <div className="innerdiv">
+                <h3>Negative Prompt</h3>
+                <input
+                  onChange={handleInputChange}
+                  type="text"
+                  value={negative_prompt}
+                  name="negative_prompt"
+                  className="promptinput"
+                />
+              </div>
+              <div className="innerdiv">
+                <h3>Scheduler</h3>
+                <select
+                  onChange={handleInputChange}
+                  value={scheduler}
+                  name="scheduler"
+                  className="promptinput"
+                >
+                  <option value="DDIM">DDIM</option>
+                  <option value="DPM Multi">DPM Multi</option>
+                  <option value="DPM Single">DPM Single</option>
+                  <option value="Euler a">Euler a</option>
+                  <option value="DPM2 a Karras">DPM2 a Karras</option>
+                  <option value="DDM2 Karas">DDM2 Karas</option>
+                  <option value="LMS">LMS</option>
+                </select>
+              </div>
+              <div className="innerdiv">
+                <h3>Steps</h3>
+                <Row>
+                  <Col span={12}>
+                    <Slider
+                      min={1}
+                      max={20}
+                      onChange={(value) =>
+                        handleInputChange({
+                          target: { name: "num_inference_steps", value },
+                        })
+                      }
+                      value={
+                        typeof num_inference_steps === "number"
+                          ? num_inference_steps
+                          : 1
+                      }
+                    />
+                  </Col>
+                  <Col span={4}>
+                    <InputNumber
+                      min={1}
+                      max={20}
+                      style={{ margin: "0 16px" }}
+                      value={
+                        typeof num_inference_steps === "number"
+                          ? num_inference_steps
+                          : 1
+                      }
+                      name="num_inference_steps"
+                      onChange={handleInputChange}
+                    />
+                  </Col>
+                </Row>
+              </div>
 
-                <div className="innerdiv">
-                  <h3>Guidance Scale</h3>
-                  <Row>
-                    <Col span={12}>
-                      <Slider
-                        min={1}
-                        max={20}
-                        onChange={(value) =>
-                          handleInputChange({
-                            target: { name: "guidance_scale", value },
-                          })
-                        }
-                        value={
-                          typeof guidance_scale === "number"
-                            ? guidance_scale
-                            : 1
-                        }
-                      />
-                    </Col>
-                    <Col span={4}>
-                      <InputNumber
-                        min={1}
-                        max={20}
-                        style={{ margin: "0 16px" }}
-                        name="guidance_scale"
-                        value={
-                          typeof guidance_scale === "number"
-                            ? guidance_scale
-                            : 1
-                        }
-                        onChange={handleInputChange}
-                      />
-                    </Col>
-                  </Row>
-                </div>
-              </>)}
-           
-            {/* {loading ? (
+              <div className="innerdiv">
+                <h3>Guidance Scale</h3>
+                <Row>
+                  <Col span={12}>
+                    <Slider
+                      min={1}
+                      max={20}
+                      onChange={(value) =>
+                        handleInputChange({
+                          target: { name: "guidance_scale", value },
+                        })
+                      }
+                      value={
+                        typeof guidance_scale === "number" ? guidance_scale : 1
+                      }
+                    />
+                  </Col>
+                  <Col span={4}>
+                    <InputNumber
+                      min={1}
+                      max={20}
+                      style={{ margin: "0 16px" }}
+                      name="guidance_scale"
+                      value={
+                        typeof guidance_scale === "number" ? guidance_scale : 1
+                      }
+                      onChange={handleInputChange}
+                    />
+                  </Col>
+                </Row>
+              </div>
+            </>
+          )}
+
+          {/* {loading ? (
               <button onClick={() => fetchData()} className="genratebtn">
                 Loading...
               </button>
@@ -289,12 +295,9 @@ const TexttoImage = () => {
                 Generate
               </button>
             )} */}
-          </div>
         </div>
       </div>
-      
-      
-    
+    </div>
   );
 };
 

@@ -64,7 +64,6 @@ cursor: pointer;}
 @media  screen and (max-width:578px) {
     .container-fluid{
         width: 650px;
-        height: auto;
-   }
+        height: auto;
 }
-
+}

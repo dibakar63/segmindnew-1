@@ -7,13 +7,11 @@ import { useAuth } from '../Context/auth'
 import Logo from '../assets/image.png'
 const Navbar = () => {
   const [auth,setAuth]=useAuth()
-  console.log(auth.name);
+  console.log(auth?.name);
   const [isDropdownVisible, setDropdownVisible] = useState(false);
-
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);
   };
-
   const navigate = useNavigate();
   const handleLogout = () => {
     setAuth({
@@ -57,22 +55,14 @@ const Navbar = () => {
                 )}   
         </li> : 
          <li className="nav-item ">
-          
             <button className='btn btn-primary mt-2' onClick={()=>navigate('/login')}>Login</button>
-            
-          
-        </li>  
+        </li>
         }
-        
-         
-         
       </ul>
-      
     </div>
   </div>
 </nav>
     </div>
   )
 }
-
 export default Navbar

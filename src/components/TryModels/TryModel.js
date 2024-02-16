@@ -66,11 +66,17 @@ const TryModels = () => {
     });
   };
 
+  const handleSearch=()=>{
+    setQuery(query); 
+  }
+
+ 
+
   return (
     <div className="container-fluid trymodel mt-30">
       <div className=" titleContent">
-        <input type="text" placeholder="Search Your AI generated Image Here" className="input_btn"/>
-        <button className="search_btn2">Search</button>
+        <input type="text" placeholder="Search Your AI generated Image Here" className="input_btn" value={query} onChange={(e)=>setQuery(e.target.value)}/>
+        <button className="search_btn2" onClick={handleSearch}>Search</button>
         <div className="titlebutton">
           <div className="titlebtninnerdiv">
             <button
@@ -106,14 +112,14 @@ const TryModels = () => {
               Controlnets
             </button>
           </div>
-          <div className="titlesearchdiv">
+          {/* <div className="titlesearchdiv">
             <input
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Controllenet"
               className="input"
               
             />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="imgDiv2 imgflex">
