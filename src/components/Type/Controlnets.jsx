@@ -30,7 +30,6 @@ const Controlnets = () => {
   console.log(model);
   const [advanced, setAdvancedtrue] = useState(true);
 
-
   const [originalimg, setoriginalimg] = useState(
     model?.default_image_output || ""
   );
@@ -292,10 +291,9 @@ const Controlnets = () => {
                     alt="Uploaded"
                     style={{
                       width: "180px",
-                      height: "210px",
+                      height: "130px",
                       borderRadius: "16px",
                       marginTop: "33px",
-                      marginBottom: "10px",
                     }}
                   />
                 </div>

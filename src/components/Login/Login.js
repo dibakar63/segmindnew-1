@@ -20,13 +20,13 @@ const Login = () => {
       });
       if (res && res.status === 200) {
         toast.success("login successful");
-        console.log(res);
+        
         setAuth({
           ...auth,
           name: res.data.name,
           token: res.data.token,
         });
-        localStorage.setItem("auth", JSON.stringify(res));
+        localStorage.setItem("auth", JSON.stringify(res.data));
         navigate("/");
       } else {
         toast.error("login failed");
@@ -36,6 +36,7 @@ const Login = () => {
       toast.error("Something went wrong");
     }
   };
+  console.log(auth)
 
   return (
     <div className="Login">

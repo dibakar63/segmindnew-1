@@ -7,7 +7,7 @@ import { useAuth } from '../Context/auth'
 import Logo from '../assets/image.png'
 const Navbar = () => {
   const [auth,setAuth]=useAuth()
-  console.log(auth.name);
+  console.log(auth?.name);
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const toggleDropdown = () => {
     setDropdownVisible(!isDropdownVisible);

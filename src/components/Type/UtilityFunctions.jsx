@@ -11,6 +11,8 @@ import { useAuth } from "../Context/auth";
 
 const UtilityFunctions = () => {
   const [auth, setAuth] = useAuth();
+  console.log(auth);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,7 +35,6 @@ const UtilityFunctions = () => {
     if (model?.slug === "sam-img2img" || model?.slug === "bg-removal") {
       setAdvancedtrue(false);
     }
-    
   }, []);
   console.log("advance", advanced);
   const [originalimg, setoriginalimg] = useState(
@@ -130,17 +131,16 @@ const UtilityFunctions = () => {
   if (!advanced) {
     modifiedData = {
       image: base64File,
-    }
-  }else{
+    };
+  } else {
     modifiedData = {
       image: base64File,
-      bg:bg,
-      face:face,
-      fidelity:fidelity,
-      scale:scale
-    }
+      bg: bg,
+      face: face,
+      fidelity: fidelity,
+      scale: scale,
+    };
   }
-  
 
   // let modifiedData = {
   //   prompt,
@@ -235,10 +235,9 @@ const UtilityFunctions = () => {
                     alt="Uploaded"
                     style={{
                       width: "180px",
-                      height: "210px",
+                      height: "130px",
                       borderRadius: "16px",
                       marginTop: "33px",
-                      marginBottom: "10px",
                     }}
                   />
                 </div>
