@@ -66,9 +66,20 @@ const TryModels = () => {
     });
   };
 
-  const handleSearch=()=>{
-    setQuery(query); 
+  const handleSearch=async()=>{
+    try {
+      const res = await axios.get(`http://localhost:8004/wrapper/searchModel?title=${query}`);
+     setData(res.data);
+  
+    
+      // Handle the response data as needed
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      // Handle the error
+    }
   }
+
+
 
  
 
@@ -125,13 +136,7 @@ const TryModels = () => {
       <div className="imgDiv2 imgflex">
         {data
           ?.slice(0, 2)
-          .filter((eq) => {
-            if (query === "") {
-              return eq;
-            } else if (eq.title.toLowerCase().includes(query.toLowerCase())) {
-              return eq;
-            }
-          })
+          
           .map((element) => {
             return (
               <div>
@@ -147,13 +152,7 @@ const TryModels = () => {
         <div className="container-fluid imgdiv2 imgcolumn">
           {data
             ?.slice(2)
-            .filter((eq) => {
-              if (query === "") {
-                return eq;
-              } else if (eq.title.toLowerCase().includes(query.toLowerCase())) {
-                return eq;
-              }
-            })
+          
             .map((element) => {
               return (
                 <div style={{ marginTop: "15px" }} >
