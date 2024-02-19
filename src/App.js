@@ -24,6 +24,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UtilityFunctions from "./components/Type/UtilityFunctions";
 import Controlnets from "./components/Type/Controlnets";
+import Architechture from "./components/Type/Architechture";
+import PrintOnDemand from "./components/Type/PrintOnDemand";
 //import Navbartwo from "./components/Navbartwo/Navbartwo";
 
 const App = () => {
@@ -42,6 +44,8 @@ const App = () => {
           element={<UtilityFunctions />}
         />
         <Route path="/models/controlnets/:name" element={<Controlnets />} />
+        <Route path="/models/architecture/:name" element={<Architechture />} />
+        <Route path="/models/pod/:name" element={<PrintOnDemand />} />
         <Route path="/:desiredType" element={<FilterPage />} />
 
         <Route path="/models" element={<TryModels />} />

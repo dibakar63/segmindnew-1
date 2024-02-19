@@ -5,9 +5,12 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useAuth } from "../Context/auth";
 import { API } from "../../Constants/Api";
+import { useDispatch } from "react-redux";
+import { setLoginDetails } from "../../slice/SessionSlice";
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch=useDispatch();
   const [auth, setAuth] = useAuth();
   const [username, setusername] = useState("");
 
@@ -21,7 +24,7 @@ const Login = () => {
       });
       if (res && res.status === 200) {
         toast.success("login successful");
-        
+        dispatch(setLoginDetails(res.data))
         setAuth({
           ...auth,
           name: res.data.name,

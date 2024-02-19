@@ -13,7 +13,15 @@ const FilterPage = () => {
   const [filterdata, setFilterdata] = useState([]);
   const [activeButton, setActiveButton] = useState(location.state.name);
   const [loading, setLoading] = useState(true);
-  console.log(filterdata);
+
+  const architecturedata=[{
+    "default_image_output":"/images/architecture.png",
+    "slug":"arch_sketch"
+  }]
+ const poddata=[{
+  "default_image_output":"/images/pod.png",
+  "slug":"pod"
+ }]
 
   useEffect(() => {
     if (location.state.desiredType == "textToImage") {
@@ -25,13 +33,17 @@ const FilterPage = () => {
     } else if (location.state.desiredType == "Controlnets") {
       getControlnets();
     }
+     else if (location.state.desiredType == "Architecture") {
+      setFilterdata(architecturedata)
+    }
+     else if (location.state.desiredType == "POD") {
+      setFilterdata(poddata)
+    }
   }, [location.state.desiredType]);
 
   const gettexttoImage = async () => {
     try {
-      const res = await axios.get(
-        `${API}/wrapper/textToImagedisplay`
-      );
+      const res = await axios.get(`${API}/wrapper/textToImagedisplay`);
       setFilterdata(res.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -53,9 +65,7 @@ const FilterPage = () => {
   };
   const getutilityfunctions = async () => {
     try {
-      const res = await axios.get(
-        `${API}/wrapper/utilityFunctiondisplay`
-      );
+      const res = await axios.get(`${API}/wrapper/utilityFunctiondisplay`);
       setFilterdata(res.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -65,9 +75,7 @@ const FilterPage = () => {
   };
   const getControlnets = async () => {
     try {
-      const res = await axios.get(
-        `${API}/wrapper/controlnetsdisplay`
-      );
+      const res = await axios.get(`${API}/wrapper/controlnetsdisplay`);
       setFilterdata(res.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -76,9 +84,21 @@ const FilterPage = () => {
     }
   };
 
+  // const handleOnClick = (element) => {
+  //   navigate(`/models/type`, { state: { elemert: element } });
+  // };
   const handleOnClick = (element) => {
-    navigate(`/models/type`, { state: { elemert: element } });
+    if (element.slug === "arch_sketch") {
+      // Handle navigation for "Architecture" type
+      navigate(`/models/architecture/${element.slug}`, { state: { element: element } });
+    } else if(element.slug === "pod"){
+      navigate(`/models/pod/${element.slug}`, { state: { element: element } });
+    }else {
+      // Handle navigation for other types
+      navigate(`/models/type`, { state: { elemert: element  } });
+    }
   };
+  
   const decideType = (desiredType, name) => {
     navigate(`/${desiredType}`, {
       state: { models: models, desiredType: desiredType },
@@ -129,6 +149,22 @@ const FilterPage = () => {
                 onClick={() => decideType("Controlnets", "Controlnets")}
               >
                 Controlnets
+              </button>
+              <button
+                className={`filterbtns ${
+                  activeButton === "Architecture" ? "active" : ""
+                }`}
+                onClick={() => decideType("Architecture", "Architecture")}
+              >
+                Architecture
+              </button>
+              <button
+                className={`filterbtns ${
+                  activeButton === "POD" ? "active" : ""
+                }`}
+                onClick={() => decideType("POD", "POD")}
+              >
+                Print On Demand
               </button>
             </div>
           </div>

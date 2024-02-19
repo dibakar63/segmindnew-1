@@ -50,22 +50,22 @@ const Home = () => {
         <button className=" search_btn">Generate</button>
 
         <div className="col home_img">
-          {data.slice(0, 1).map((e) => (
+          {data?.slice(0, 1).map((e) => (
             <>
               <img className="main" src={e.default_image_output} />
             </>
           ))}
-          {data.slice(1, 2).map((e) => (
+          {data?.slice(1, 2).map((e) => (
             <>
               <img className="img6" src={e.default_image_output} />
             </>
           ))}
-          {data.slice(2, 3).map((e) => (
+          {data?.slice(2, 3).map((e) => (
             <>
               <img className="img7" src={e.default_image_output} />
             </>
           ))}
-          {data.slice(3, 4).map((e) => (
+          {data?.slice(3, 4).map((e) => (
             <>
               <img className="img8" src={e.default_image_output} />
             </>
@@ -87,12 +87,12 @@ const Home = () => {
           </button>
         </div>
         <div className="col-8 img2 ">
-          {data.slice(5, 6).map((e) => (
+          {data?.slice(5, 6).map((e) => (
             <>
               <img src={e.default_image_output} />
             </>
           ))}
-          {data.slice(6, 7).map((e) => (
+          {data?.slice(6, 7).map((e) => (
             <>
               <img className="img3" src={e.default_image_output} />
             </>

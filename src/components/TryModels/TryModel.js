@@ -49,6 +49,8 @@ const TryModels = () => {
     return 0;
   });
 
+ 
+
   const decideType = (desiredType, name) => {
     setActiveButton(name);
 
@@ -118,6 +120,22 @@ const TryModels = () => {
             >
               Controlnets
             </button>
+            <button
+                className={`filterbtns ${
+                  activeButton === "Architecture" ? "active" : ""
+                }`}
+                onClick={() => decideType("Architecture", "Architecture")}
+              >
+                Architecture
+              </button>
+              <button
+                className={`filterbtns ${
+                  activeButton === "POD" ? "active" : ""
+                }`}
+                onClick={() => decideType("POD", "POD")}
+              >
+                Print On Demand
+              </button>
           </div>
           {/* <div className="titlesearchdiv">
             <input

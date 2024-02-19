@@ -28,6 +28,7 @@ const Type = () => {
     "sd1.5-controlnet-openpose",
   ];
 
+
   useEffect(() => {
     const fetchData = async () => {
       await getdata();
@@ -48,6 +49,7 @@ const Type = () => {
         } else if (data2.includes(slug)) {
           navigate(`/models/controlnets/${slug}`, { state: { details } });
         }
+       
       }
     };
 

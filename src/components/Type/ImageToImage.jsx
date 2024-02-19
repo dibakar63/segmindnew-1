@@ -9,8 +9,11 @@ import { message, Upload, Button } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { useAuth } from "../Context/auth";
 import { API } from "../../Constants/Api";
+import { useSelector } from "react-redux";
 
 const ImageToImage = () => {
+  let logindetails = useSelector((state) => state?.session?.loginDetails);
+  console.log(logindetails)
   const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
 
@@ -211,7 +214,7 @@ const ImageToImage = () => {
   }
 
   const fetchData = async () => {
-    if (!auth?.name) {
+    if (!logindetails?.name) {
       navigate("/login");
     } else {
       let url;
